@@ -8,10 +8,10 @@
         <div class="flex items-center gap-3">
           <img 
             src="{{ asset('images/logo.png') }}" 
-            alt="Logo Satgas PPKPT"
+            alt="Logo Satgas PPKS"
             class="w-14 h-14 object-contain filter drop-shadow-md">
           <div>
-            <div class="text-lg font-medium">Satgas PPKPT</div>
+            <div class="text-lg font-medium">Satgas PPKS</div>
             <div class="text-gray-400 text-sm">Politeknik Negeri Padang</div>
           </div>
         </div>
@@ -85,7 +85,7 @@
     <div class="max-w-7xl mx-auto px-6 py-6">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-gray-400 text-sm text-center md:text-left">
-          © 2025 Satgas PPKPT Politeknik Negeri Padang. Semua Hak Dilindungi.
+          © 2025 Satgas PPKS Politeknik Negeri Padang. Semua Hak Dilindungi.
         </div>
         <div class="flex items-center gap-1 text-gray-400 text-sm">
           <span>Dibuat dengan</span>

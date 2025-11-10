@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>Satgas PPKPT Politeknik Negeri Padang</title>
+    <title>Satgas PPKS Politeknik Negeri Padang</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
@@ -34,7 +34,9 @@
         @yield('content')
     </main>
 
+   @if (!request()->routeIs('login') && !request()->routeIs('register'))
     @include('partials.public_footer')
+@endif
 
 </body>
 </html>

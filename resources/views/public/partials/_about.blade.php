@@ -27,7 +27,7 @@ $values = [
                     <div class="relative w-80 h-80 lg:w-96 lg:h-96 p-4">
                         <img 
                             src="{{ asset('images/logo.png') }}" 
-                            alt="Logo Politeknik Negeri Padang Satgas PPKPT" 
+                            alt="Logo Politeknik Negeri Padang Satgas PPKS" 
                             class="w-full h-full object-contain filter drop-shadow-2xl"
                         >
                     </div>
@@ -39,7 +39,7 @@ $values = [
                 <div>
                     <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full mb-4">
                         <i class="bi bi-shield-fill-check w-4 h-4"></i>
-                        <span class="text-sm">Tentang Satgas PPKPT</span>
+                        <span class="text-sm">Tentang Satgas PPKS</span>
                     </div>
                     <h2 class="text-4xl text-gray-800 mb-6">
                         Melindungi & Mendukung Mahasiswa PNP
@@ -48,7 +48,7 @@ $values = [
 
                 <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
                     <p>
-                        <strong class="text-gray-800">Satgas PPKPT Politeknik Negeri Padang</strong> adalah tim khusus yang 
+                        <strong class="text-gray-800">Satgas PPKS Politeknik Negeri Padang</strong> adalah tim khusus yang 
                         didedikasikan untuk mendukung mahasiswa dalam menjaga kesehatan mental sekaligus 
                         memastikan perlindungan hak-hak mereka di lingkungan kampus.
                     </p>
@@ -62,7 +62,7 @@ $values = [
 
                     <div class="p-4 bg-orange-50 rounded-lg border border-orange-200">
                         <p class="text-sm text-orange-900">
-                            <strong>Komposisi Tim:</strong> Satgas PPKPT dibentuk dari mahasiswa anggota satgas yang telah terlatih 
+                            <strong>Komposisi Tim:</strong> Satgas PPKS dibentuk dari mahasiswa anggota satgas yang telah terlatih 
                             dan tenaga pendidik kampus yang berpengalaman, memastikan pendekatan yang seimbang antara perspektif 
                             sesama mahasiswa dan bimbingan profesional dari dosen.
                         </p>

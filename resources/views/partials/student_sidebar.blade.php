@@ -2,10 +2,10 @@
     style="width: 280px; height: 100vh; position: fixed;">
     <a href="{{ route('student.dashboard') }}"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo Satgas PPKPT" style="height: 50px;">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo Satgas PPKS" style="height: 50px;">
         <div class="ms-2">
             <span class="fs-6 fw-medium text-dark">Portal Mahasiswa</span><br>
-            <span class="text-muted" style="font-size: 0.9rem;">PPKPT PNP</span>
+            <span class="text-muted" style="font-size: 0.9rem;">PPKS PNP</span>
         </div>
     </a>
     <hr>

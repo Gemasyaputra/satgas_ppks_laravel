@@ -8,7 +8,7 @@
       </div>
       <h2 class="text-4xl text-gray-800 mb-4">Hubungi Kami</h2>
       <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Jika Anda membutuhkan bantuan segera atau ingin berkonsultasi, jangan ragu untuk menghubungi tim Satgas PPKPT melalui berbagai cara berikut
+        Jika Anda membutuhkan bantuan segera atau ingin berkonsultasi, jangan ragu untuk menghubungi tim Satgas PPKS melalui berbagai cara berikut
       </p>
     </div>
 
@@ -40,7 +40,7 @@
             'icon' => 'bi-envelope-fill',
             'title' => 'Email Resmi',
             'primary' => 'satgas@pnp.ac.id',
-            'secondary' => 'ppkpt.pnp@gmail.com',
+            'secondary' => 'PPKS.pnp@gmail.com',
             'description' => 'Untuk konsultasi dan pertanyaan umum',
             'bgColor' => 'bg-blue-50',
             'iconColor' => 'text-blue-600',
@@ -112,7 +112,7 @@
           <div>
             <div class="text-gray-800">Politeknik Negeri Padang</div>
             <div class="text-gray-600">Gedung Rektorat, Lantai 2</div>
-            <div class="text-gray-600">Ruang Satgas PPKPT</div>
+            <div class="text-gray-600">Ruang Satgas PPKS</div>
           </div>
           <div class="text-gray-600">
             Jl. Kampus Limau Manis, Padang, Sumatera Barat 25164

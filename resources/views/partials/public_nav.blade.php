@@ -4,10 +4,10 @@
         <div class="flex items-center gap-3">
             <img 
                 src="{{ asset('images/logo.png') }}" 
-                alt="Logo Satgas PPKPT Politeknik Negeri Padang"
+                alt="Logo Satgas PPKS Politeknik Negeri Padang"
                 class="w-14 h-14 object-contain filter drop-shadow-md">
             <div class="flex flex-col">
-                <span class="text-orange-600 font-semibold text-lg">Satgas PPKPT</span>
+                <span class="text-orange-600 font-semibold text-lg">Satgas PPKS</span>
                 <span class="text-gray-500 text-xs">Politeknik Negeri Padang</span>
             </div>
         </div>

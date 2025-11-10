@@ -2,9 +2,9 @@
     style="width: 280px; height: 100vh; position: fixed;">
     <a href="{{ route('admin.dashboard') }}"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo Satgas PPKPT" style="height: 50px;">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo Satgas PPKS" style="height: 50px;">
         <div class="ms-2">
-            <span class="fs-6 fw-medium text-warning">Satgas PPKPT</span><br>
+            <span class="fs-6 fw-medium text-warning">Satgas PPKS</span><br>
             <span class="text-muted" style="font-size: 0.9rem;">Politeknik Negeri Padang</span>
         </div>
     </a>

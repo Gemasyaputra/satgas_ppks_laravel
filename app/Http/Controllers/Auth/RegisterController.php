@@ -48,10 +48,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+       return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nim' => ['required', 'string', 'max:255', 'unique:users'], // Validasi NIM
+            'phone' => ['required', 'string', 'max:20'],
+            'program' => ['required', 'string'],
+            'department' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -67,6 +71,15 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            
+            // Data Mahasiswa
+            'nim' => $data['nim'],
+            'phone' => $data['phone'],
+            'program' => $data['program'],
+            'department' => $data['department'],
+            
+            'role' => 'student', // Otomatis set role sebagai 'student'
+            'is_active' => true, // Otomatis aktif
         ]);
     }
 }

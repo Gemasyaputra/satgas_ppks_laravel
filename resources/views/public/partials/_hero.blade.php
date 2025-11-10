@@ -18,7 +18,7 @@
 
                     <h1 class="text-4xl lg:text-6xl text-gray-800 leading-tight">
                         <span class="text-5 xl lg:text-6xl font-extrabold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
-                            SATGAS PPKPT
+                            SATGAS PPKS
                         </span>
                         <br>
                         <span class="text-3xl lg:text-4xl text-gray-700">
@@ -78,7 +78,7 @@
                     <div class="relative w-80 h-80 lg:w-96 lg:h-96 p-4 hover:scale-105 transition-transform duration-500">
                         <img
                             src="{{ asset('images/logo.png') }}"
-                            alt="Logo Satgas PPKPT Politeknik Negeri Padang"
+                            alt="Logo Satgas PPKS Politeknik Negeri Padang"
                             class="w-full h-full object-contain drop-shadow-2xl"
                         >
                     </div>

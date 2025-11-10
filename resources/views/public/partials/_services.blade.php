@@ -7,7 +7,7 @@
                 <i class="bi bi-heart-fill w-4 h-4"></i>
                 <span class="text-sm">Layanan Terpercaya</span>
             </div>
-            <h2 class="text-4xl text-gray-800 mb-4">Layanan Satgas PPKPT</h2>
+            <h2 class="text-4xl text-gray-800 mb-4">Layanan Satgas PPKS</h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Kami menyediakan layanan profesional untuk mendukung kesejahteraan dan melindungi hak-hak mahasiswa PNP.
             </p>
