@@ -1,51 +1,98 @@
-<footer class="bg-dark text-white">
-    <div class="container py-5">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo Satgas PPKPT" style="height: 50px;">
-                    <div class="ms-2">
-                        <span class="fw-semibold text-warning fs-5">Satgas PPKPT</span><br>
-                        <span class="text-muted small">Politeknik Negeri Padang</span>
-                    </div>
-                </div>
-                <p class="text-muted small">Mendukung kesejahteraan mental dan melindungi hak mahasiswa.</p>
-            </div>
-            
-            <div class="col-md-2">
-                <h5 class="text-white mb-3">Navigasi</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#beranda" class="nav-link p-0 text-muted">Beranda</a></li>
-                    <li class="nav-item mb-2"><a href="#layanan" class="nav-link p-0 text-muted">Layanan</a></li>
-                    <li class="nav-item mb-2"><a href="#artikel" class="nav-link p-0 text-muted">Artikel</a></li>
-                    <li class="nav-item mb-2"><a href="#tentang" class="nav-link p-0 text-muted">Tentang</a></li>
-                    <li class="nav-item mb-2"><a href="#kontak" class="nav-link p-0 text-muted">Kontak</a></li>
-                </ul>
-            </div>
+<footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+  {{-- Main Footer --}}
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
 
-            <div class="col-md-3">
-                <h5 class="text-white mb-3">Kontak</h5>
-                <ul class="nav flex-column">
-                    @if($contactMethods['hotline'])
-                    <li class="nav-item mb-2 text-muted small"><i class="bi bi-telephone-fill me-2 text-warning"></i> {{ $contactMethods['hotline']->phone }}</li>
-                    @endif
-                    @if($contactMethods['email'])
-                    <li class="nav-item mb-2 text-muted small"><i class="bi bi-envelope-fill me-2 text-warning"></i> {{ $contactMethods['email']->phone }}</li>
-                    @endif
-                    <li class="nav-item mb-2 text-muted small"><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Gedung Rektorat, Lt. 2</li>
-                </ul>
-            </div>
-            
-            <div class="col-md-3">
-                 <h5 class="text-white mb-3">Akses Panel</h5>
-                 <p class="text-muted small">Login sebagai mahasiswa atau admin untuk mengakses panel.</p>
-                 <a href="{{ route('login') }}" class="btn btn-warning text-white fw-bold">Login Sekarang</a>
-            </div>
+      {{-- Logo & Description --}}
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <img 
+            src="{{ asset('images/logo.png') }}" 
+            alt="Logo Satgas PPKPT"
+            class="w-14 h-14 object-contain filter drop-shadow-md">
+          <div>
+            <div class="text-lg font-medium">Satgas PPKPT</div>
+            <div class="text-gray-400 text-sm">Politeknik Negeri Padang</div>
+          </div>
         </div>
-    </div>
-    <div class="border-top border-secondary-subtle">
-        <p class="text-center text-muted small mb-0 py-3">
-            © 2025 Satgas PPKPT Politeknik Negeri Padang.
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Mendukung kesejahteraan mental dan melindungi hak mahasiswa 
+          dengan layanan profesional dan terpercaya.
         </p>
+      </div>
+
+        {{-- Quick Links --}}
+        <div>
+        <h4 class="text-lg mb-4 font-medium">Navigasi</h4>
+        <div class="space-y-2">
+            @foreach(['beranda','layanan','artikel','tentang','kontak'] as $link)
+            <a 
+                href="#{{ $link }}" 
+                class="block transition-all duration-300 text-sm"
+                style="
+                color: #9ca3af !important; /* abu-abu default */
+                text-decoration: none !important; 
+                outline: none !important;
+                "
+                onmouseover="this.style.color='#fb923c'" 
+                onmouseout="this.style.color='#9ca3af'"
+                onfocus="this.style.color='#fb923c'" 
+                onblur="this.style.color='#9ca3af'"
+            >
+                {{ ucfirst($link) }}
+            </a>
+            @endforeach
+        </div>
+        </div>
+
+
+
+      {{-- Services --}}
+      <div>
+        <h4 class="text-lg mb-4 font-medium">Layanan</h4>
+        <div class="space-y-2 text-sm text-gray-400">
+          <div>Konseling Online</div>
+          <div>Hotline Darurat</div>
+          <div>Perlindungan Hak</div>
+          <div>Edukasi Mental Health</div>
+        </div>
+      </div>
+
+      {{-- Contact Info --}}
+      <div>
+        <h4 class="text-lg mb-4 font-medium">Kontak</h4>
+        <div class="space-y-3 text-sm text-gray-400">
+          <div class="flex items-center gap-2">
+            <i class="bi bi-telephone-fill text-orange-400"></i>
+            <span>080680360860</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="bi bi-envelope-fill text-orange-400"></i>
+            <span>satgas@pnp.ac.id</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <i class="bi bi-geo-alt-fill text-orange-400 mt-0.5 flex-shrink-0"></i>
+            <span>Politeknik Negeri Padang, Lt. 2, Ruang Satgas</span>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+
+  {{-- Bottom Footer --}}
+  <div class="border-t border-gray-700">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-gray-400 text-sm text-center md:text-left">
+          © 2025 Satgas PPKPT Politeknik Negeri Padang. Semua Hak Dilindungi.
+        </div>
+        <div class="flex items-center gap-1 text-gray-400 text-sm">
+          <span>Dibuat dengan</span>
+          <i class="bi bi-heart-fill text-red-400"></i>
+          <span>untuk mahasiswa PNP</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
