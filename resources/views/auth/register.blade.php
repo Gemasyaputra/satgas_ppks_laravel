@@ -20,7 +20,7 @@
                                 <i class="bi bi-person-plus-fill text-white fs-1"></i>
                             </div>
                             <h2 class="fw-bold text-dark mb-1">Registrasi Mahasiswa</h2>
-                            <p class="text-muted">Daftar untuk mengakses layanan PPKS.</p>
+                            <p class="text-muted">Daftar untuk mengakses layanan PPKPT.</p>
                         </div>
 
                         <form method="POST" action="{{ route('register') }}">

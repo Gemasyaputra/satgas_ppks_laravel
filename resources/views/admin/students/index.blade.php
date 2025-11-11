@@ -40,6 +40,7 @@
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
+                                <th scope="col">foto</th>
                                 <th scope="col">Mahasiswa</th>
                                 <th scope="col">NIM</th>
                                 <th scope="col">Program</th>
@@ -56,11 +57,17 @@
                                             <img src="{{ $student->photo_url ? asset('storage/' . $student->photo_url) : 'https://via.placeholder.com/40' }}"
                                                 alt="{{ $student->name }}" class="rounded-circle me-3"
                                                 style="width: 40px; height: 40px; object-fit: cover;">
-                                            div class="ms-3"> <div class="fw-medium">{{ $student->name }}</div>
-                                            <div class="text-muted small">{{ $student->email }}</div>
+
+
                                         </div>
                 </div>
+
                 </td>
+                <td>
+                    <div class="fw-semibold">{{ $student->name }}</div>
+                    <div class="text-muted">{{ $student->email }}</div>
+                </td>
+
                 <td>
                     <i class="bi bi-person-vcard-fill text-warning me-1"></i>
                     {{ $student->nim }}

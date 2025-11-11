@@ -30,15 +30,15 @@
                         <textarea class="form-control" id="description" name="description" rows="5" placeholder="Jelaskan kronologi, kapan, dimana, siapa yang terlibat, dll." required></textarea>
                     </div>
 
-                    <div class="form-check form-switch p-3 bg-warning-subtle rounded border border-warning-subtle">
-                        <input class="form-check-input" type="checkbox" role="switch" id="is_anonymous" name="is_anonymous" value="1">
-                        <label class="form-check-label ms-2 fw-medium text-dark" for="is_anonymous">
+                    <div class="form-check d-flex align-items-center">
+                        <input class="form-check-input mt-1" type="checkbox" role="switch" id="is_anonymous" name="is_anonymous" value="1">
+                        <label class="form-check-label ms-2 fw-medium text-dark mb-0" for="is_anonymous">
                             Laporkan Secara Anonim
                         </label>
-                        <p class="small text-muted mb-0 mt-1">
-                            Jika dicentang, identitas Anda (Nama & NIM) akan disembunyikan dari admin.
-                        </p>
                     </div>
+                    <p class="small text-muted mt-1">
+                        Jika dicentang, identitas Anda (Nama & NIM) akan disembunyikan dari admin.
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

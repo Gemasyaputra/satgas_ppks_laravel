@@ -20,7 +20,7 @@
                                 <i class="bi bi-box-arrow-in-right text-white fs-1"></i>
                             </div>
                             <h2 class="fw-bold text-dark mb-1">Selamat Datang Kembali</h2>
-                            <p class="text-muted">Masuk ke akun Satgas PPKS Anda.</p>
+                            <p class="text-muted">Masuk ke akun Anda.</p>
                         </div>
 
                         <form method="POST" action="{{ route('login') }}">

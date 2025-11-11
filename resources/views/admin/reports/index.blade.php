@@ -36,7 +36,7 @@
                         @forelse ($reports as $report)
                         <tr>
                             <td>
-                                <div class="fw-medium">{{ $report->user->name }}</div>
+                                <div class="fw-medium">{{ $report->is_anonymous ? 'Pelapor (Anonim)' : $report->user->name }}</div>
                                 <div class="text-muted small">{{ $report->user->nim }}</div>
                                 @if($report->is_anonymous)
                                     <span class="badge bg-purple-subtle text-purple-emphasis small"><i class="bi bi-shield-lock-fill me-1"></i> Anonim</span>

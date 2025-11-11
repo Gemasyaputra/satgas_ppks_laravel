@@ -23,7 +23,7 @@
 
         {{-- Quick Links --}}
         <div>
-        <h4 class="text-lg mb-4 font-medium">Navigasi</h4>
+        <h4 class="text-lg mb-4 font-medium"style="color: #9ca3af !important;">Navigasi</h4>
         <div class="space-y-2">
             @foreach(['beranda','layanan','artikel','tentang','kontak'] as $link)
             <a 
@@ -49,7 +49,8 @@
 
       {{-- Services --}}
       <div>
-        <h4 class="text-lg mb-4 font-medium">Layanan</h4>
+        <h4 class="text-lg mb-4 font-medium" style="color: #9ca3af !important;">
+         Layanan</h4>
         <div class="space-y-2 text-sm text-gray-400">
           <div>Konseling Online</div>
           <div>Hotline Darurat</div>
@@ -60,7 +61,7 @@
 
       {{-- Contact Info --}}
       <div>
-        <h4 class="text-lg mb-4 font-medium">Kontak</h4>
+        <h4 class="text-lg mb-4 font-medium" style="color: #9ca3af !important;">Kontak</h4>
         <div class="space-y-3 text-sm text-gray-400">
           <div class="flex items-center gap-2">
             <i class="bi bi-telephone-fill text-orange-400"></i>

@@ -1,7 +1,43 @@
-// Body
-$body-bg: #f8fafc;
+// 1. Impor Font Poppins
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// ===================================================================
+// PENYESUAIAN WARNA SATGAS PPKPT
+// ===================================================================
+
+// 1. Palet Warna Utama (dari screenshot)
+$orange:  #F97316; // Oranye utama (Tombol Masuk, Hero)
+$red:     #EF4444; // Merah (Darurat, Hotline)
+$green:   #10B981; // Hijau (Perlindungan Hak, Chat)
+$blue:    #3B82F6; // Biru (Konseling, Email)
+$tan:     #FFF7ED; // Latar Belakang (BG Hero, BG Artikel)
+$dark-charcoal: #1F2937; // Latar belakang footer
+
+// 2. Petakan ke Variabel Bootstrap
+$primary:       $blue;
+$success:       $green;
+$danger:        $red;
+$warning:       $orange;   // Oranye jadi "warning"
+$info:          $blue;     // Info juga biru
+$dark:          $dark-charcoal; // Untuk footer
+
+// 3. Tipografi & Tampilan
+$font-family-sans-serif: "Poppins", sans-serif; // Atur font default
+$body-bg:                #fcfcfc; // Latar belakang bodi (putih bersih)
+$body-color:             #374151; // Warna teks bodi (abu-abu tua)
+$headings-color:         $dark-charcoal; // Warna judul (hitam arang)
+
+// 4. Ubah Tampilan Komponen
+$card-bg:                #FFFFFF; // Kartu selalu putih
+$card-border-color:      rgba(0, 0, 0, 0.05); // Garis kartu yg sangat tipis
+$card-box-shadow:        0 .125rem .25rem rgba(0,0,0,.075); // Bayangan tipis
+
+// 5. Atur Ulang Warna Link (agar tidak biru)
+$link-color:             $dark-charcoal;
+$link-hover-color:       $orange;
+
+// 6. Atur Warna Subtle (untuk badge/tag)
+$primary-bg-subtle:      #EFF6FF; // Biru muda
+$success-bg-subtle:      #ECFDF5; // Hijau muda
+$danger-bg-subtle:       #FEF2F2; // Merah muda
+$warning-bg-subtle:      #FFF7ED; // Oranye muda (tan)
