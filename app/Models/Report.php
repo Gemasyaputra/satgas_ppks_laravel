@@ -9,7 +9,7 @@ class Report extends Model
 {
     use HasFactory;
 
-    
+
     protected $fillable = [
         'user_id', // Mahasiswa yg lapor
         'category',
@@ -18,6 +18,28 @@ class Report extends Model
         'status',
         'admin_notes',
         'is_anonymous',
+        
+        'reporter_email',
+        'reporter_name',
+        'reporter_pob',
+        'reporter_dob',
+        'reporter_age',
+        'reporter_occupation',
+        'reporter_nim',
+        'reporter_prodi',
+        'reporter_gender',
+        'reporter_phone',
+        'reporter_address',
+        'violence_type',
+        'incident_location',
+        'disability_status',
+        'reported_party_name',
+        'reported_party_occupation',
+        'reported_party_age',
+        'reason_for_reporting',
+        'witness_contact',
+        'victim_needs',
+        'report_date',
     ];
     public function user()
     {

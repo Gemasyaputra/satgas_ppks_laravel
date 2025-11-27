@@ -17,15 +17,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="counselor_id" class="form-label">Konselor <span class="text-danger">*</span></label>
-                        <select class="form-select" id="counselor_id" name="counselor_id" required>
-                            <option value="">Pilih Konselor</option>
-                            @foreach($counselors as $counselor)
-                            <option value="{{ $counselor->id }}">{{ $counselor->name }} - {{ $counselor->specialization }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="date" class="form-label">Tanggal <span class="text-danger">*</span></label>
@@ -36,6 +28,7 @@
                             <input type="time" class="form-control" id="time" name="time" required>
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="duration" class="form-label">Durasi (menit)</label>
                         <select class="form-select" id="duration" name="duration">
@@ -44,6 +37,7 @@
                             <option value="90">90 menit</option>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="topic" class="form-label">Topik Konseling</label>
                         <input type="text" class="form-control" id="topic" name="topic" placeholder="Contoh: Konseling trauma">

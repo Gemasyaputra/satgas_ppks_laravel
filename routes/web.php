@@ -21,6 +21,8 @@ use App\Http\Controllers\Student\CounselingScheduleController as StudentSchedule
 // --- RUTE PUBLIK ---
 Route::get('/', [PublicController::class, 'index'])->name('public.home');
 Route::get('/artikel/{article}', [PublicController::class, 'showArticle'])->name('public.article.show');
+Route::get('/artikel', [PublicController::class, 'articlesIndex'])->name('public.articles.index');
+
 
 // --- RUTE AUTENTIKASI (Login, Register, Logout) ---
 Auth::routes();

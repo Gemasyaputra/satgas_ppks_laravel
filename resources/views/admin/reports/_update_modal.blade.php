@@ -5,10 +5,35 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateReportModalLabel{{ $report->id }}">Update Status Laporan</h5>
+                    <h5 class="modal-title" id="updateReportModalLabel{{ $report->id }}">Update Laporan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    
+                    <div class="mb-3">
+                        <label for="category{{ $report->id }}" class="form-label">Kategori Laporan</label>
+                        <select class="form-select" id="category{{ $report->id }}" name="category" required>
+                            @php
+                                $categories = [
+                                    'Kekerasan Verbal', 
+                                    'Kekerasan Fisik', 
+                                    'Pelecehan Seksual', 
+                                    'Bullying', 
+                                    'Diskriminasi', 
+                                    'Lainnya',
+                                    'Laporan Masuk', // Kategori default lama
+                                    'Laporan Rinci'  // Kategori default baru
+                                ];
+                            @endphp
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat }}" {{ $report->category == $cat ? 'selected' : '' }}>
+                                    {{ $cat }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="form-text">Ubah kategori jika laporan tidak sesuai.</div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="status{{ $report->id }}" class="form-label">Status Laporan</label>
                         <select class="form-select" id="status{{ $report->id }}" name="status" required>
@@ -18,6 +43,7 @@
                             <option value="rejected" {{ $report->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="admin_notes{{ $report->id }}" class="form-label">Catatan Admin / Tindak Lanjut</label>
                         <textarea class="form-control" id="admin_notes{{ $report->id }}" name="admin_notes" rows="4" 
@@ -26,7 +52,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Update</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
         </div>

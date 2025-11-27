@@ -65,7 +65,7 @@ class CounselingScheduleController extends Controller
     {
         return $request->validate([
             'user_id' => 'required|exists:users,id',
-            'counselor_id' => 'required|exists:counselors,id',
+            // 'counselor_id' => 'required|exists:counselors,id',
             'date' => 'required|date',
             'time' => 'required',
             'duration' => 'required|string',

@@ -3,133 +3,183 @@
 @section('title', 'Manajemen Mahasiswa')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="card shadow-sm border-0 mb-4">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                <div>
-                    <h2 class="h4 fw-medium mb-1">Manajemen Mahasiswa</h2>
-                    <p class="text-muted mb-0">Kelola data mahasiswa yang terdaftar dalam sistem.</p>
-                </div>
-                <button class="btn btn-warning text-white fw-bold" data-bs-toggle="modal" data-bs-target="#addStudentModal">
-                    <i class="bi bi-plus-circle-fill me-2"></i> Tambah Mahasiswa
-                </button>
+<div class="container-fluid">
+    
+    {{-- Header Page --}}
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4 d-flex justify-content-between align-items-center bg-gradient-to-r from-orange-50 to-white rounded-3">
+            <div>
+                <h2 class="h4 fw-bold text-dark mb-1">Manajemen Mahasiswa</h2>
+                <p class="text-muted mb-0 small">Kelola data mahasiswa yang terdaftar dalam sistem Satgas PPKPT.</p>
             </div>
+            <button class="btn btn-warning text-white fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+                <i class="bi bi-plus-lg me-2"></i> Tambah Mahasiswa
+            </button>
         </div>
+    </div>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> Terjadi kesalahan saat memproses data.
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+    {{-- Alert Messages --}}
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+            <div class="d-flex align-items-center mb-1">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong>Terjadi Kesalahan!</strong>
+            </div>
+            <ul class="mb-0 small">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Tabel Mahasiswa --}}
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-secondary small text-uppercase">
+                        <tr>
+                            <th scope="col" class="ps-4 py-3 border-0 rounded-start">Mahasiswa</th>
+                            <th scope="col" class="py-3 border-0">NIM</th>
+                            <th scope="col" class="py-3 border-0">Program Studi</th>
+                            <th scope="col" class="py-3 border-0">Jurusan</th>
+                            <th scope="col" class="py-3 border-0">Status Akun</th>
+                            <th scope="col" class="text-end pe-4 py-3 border-0 rounded-end">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($students as $student)
                             <tr>
-                                <th scope="col">foto</th>
-                                <th scope="col">Mahasiswa</th>
-                                <th scope="col">NIM</th>
-                                <th scope="col">Program</th>
-                                <th scope="col">Jurusan</th>
-                                <th scope="col">Status</th>
-                                <th scope="col" class="text-end">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($students as $student)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ $student->photo_url ? asset('storage/' . $student->photo_url) : 'https://via.placeholder.com/40' }}"
-                                                alt="{{ $student->name }}" class="rounded-circle me-3"
-                                                style="width: 40px; height: 40px; object-fit: cover;">
-
-
+                                {{-- Kolom Foto & Nama --}}
+                                <td class="ps-4 py-3">
+                                    <div class="d-flex align-items-center">
+                                        @if($student->photo_url)
+                                            <img src="{{ asset('storage/' . $student->photo_url) }}" 
+                                                 alt="{{ $student->name }}" 
+                                                 class="rounded-circle object-fit-cover border shadow-sm" 
+                                                 style="width: 45px; height: 45px;">
+                                        @else
+                                            {{-- Avatar Inisial --}}
+                                            <div class="rounded-circle bg-info-subtle text-info-emphasis d-flex align-items-center justify-content-center fw-bold border border-info-subtle" 
+                                                 style="width: 45px; height: 45px; font-size: 1.1rem;">
+                                                {{ substr($student->name, 0, 1) }}
+                                            </div>
+                                        @endif
+                                        
+                                        <div class="ms-3">
+                                            <div class="fw-bold text-dark">{{ $student->name }}</div>
+                                            <div class="text-muted small" style="font-size: 0.8rem;">
+                                                <i class="bi bi-envelope me-1"></i>{{ $student->email }}
+                                            </div>
                                         </div>
-                </div>
+                                    </div>
+                                </td>
 
-                </td>
-                <td>
-                    <div class="fw-semibold">{{ $student->name }}</div>
-                    <div class="text-muted">{{ $student->email }}</div>
-                </td>
+                                {{-- Kolom NIM --}}
+                                <td>
+                                    <span class="font-monospace text-dark fw-medium bg-light px-2 py-1 rounded border">
+                                        {{ $student->nim }}
+                                    </span>
+                                </td>
 
-                <td>
-                    <i class="bi bi-person-vcard-fill text-warning me-1"></i>
-                    {{ $student->nim }}
-                </td>
-                <td>
-                    <span class="badge bg-primary-subtle text-primary-emphasis">
-                        {{ $student->program }}
-                    </span>
-                </td>
-                <td>{{ $student->department }}</td>
-                <td>
-                    <span
-                        class="badge {{ $student->is_active ? 'bg-success-subtle text-success-emphasis' : 'bg-secondary-subtle text-secondary-emphasis' }}">
-                        {{ $student->is_active ? 'Aktif' : 'Tidak Aktif' }}
-                    </span>
-                </td>
-                <td class="text-end">
-                    <form action="{{ route('admin.students.toggleStatus', $student->id) }}" method="POST"
-                        class="d-inline">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-link btn-sm text-secondary"
-                            title="{{ $student->is_active ? 'Nonaktifkan' : 'Aktifkan' }}">
-                            <i class="bi {{ $student->is_active ? 'bi-person-x-fill' : 'bi-person-check-fill' }}"></i>
-                        </button>
-                    </form>
+                                {{-- Kolom Program --}}
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle rounded-pill px-3">
+                                        {{ $student->program }}
+                                    </span>
+                                </td>
 
-                    <button class="btn btn-link btn-sm text-primary" data-bs-toggle="modal"
-                        data-bs-target="#editStudentModal{{ $student->id }}">
-                        <i class="bi bi-pencil-square"></i>
-                    </button>
+                                {{-- Kolom Jurusan --}}
+                                <td class="text-secondary">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-building text-muted me-2"></i>
+                                        {{ $student->department }}
+                                    </div>
+                                </td>
 
-                    <form action="{{ route('admin.students.destroy', $student->id) }}" method="POST" class="d-inline"
-                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus mahasiswa ini?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-link btn-sm text-danger">
-                            <i class="bi bi-trash3-fill"></i>
-                        </button>
-                    </form>
-                </td>
-                </tr>
+                                {{-- Kolom Status --}}
+                                <td>
+                                    @if($student->is_active)
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2">
+                                            <i class="bi bi-check-circle-fill me-1"></i> Aktif
+                                        </span>
+                                    @else
+                                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2">
+                                            <i class="bi bi-slash-circle me-1"></i> Non-Aktif
+                                        </span>
+                                    @endif
+                                </td>
 
-                @include('admin.students._edit_modal', ['student' => $student])
+                                {{-- Kolom Aksi --}}
+                                <td class="text-end pe-4">
+                                    <div class="btn-group">
+                                        {{-- Tombol Toggle Status --}}
+                                        <form action="{{ route('admin.students.toggleStatus', $student->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-sm btn-light border-0" 
+                                                title="{{ $student->is_active ? 'Nonaktifkan Akun' : 'Aktifkan Akun' }}">
+                                                <i class="bi {{ $student->is_active ? 'bi-person-fill-slash text-warning' : 'bi-person-check-fill text-success' }} fs-6"></i>
+                                            </button>
+                                        </form>
 
-            @empty
-                <tr>
-                    <td colspan="6" class="text-center text-muted py-4">
-                        Belum ada data mahasiswa.
-                    </td>
-                </tr>
-                @endforelse
-                </tbody>
+                                        {{-- Tombol Edit --}}
+                                        <button class="btn btn-sm btn-light text-primary border-0" data-bs-toggle="modal"
+                                            data-bs-target="#editStudentModal{{ $student->id }}" title="Edit Data">
+                                            <i class="bi bi-pencil-square fs-6"></i>
+                                        </button>
+
+                                        {{-- Tombol Hapus --}}
+                                        <form action="{{ route('admin.students.destroy', $student->id) }}" method="POST" class="d-inline"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data mahasiswa ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-light text-danger border-0" title="Hapus Permanen">
+                                                <i class="bi bi-trash3 fs-6"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {{-- Include Modal Edit --}}
+                            @include('admin.students._edit_modal', ['student' => $student])
+
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-5 text-muted">
+                                    <div class="mb-3">
+                                        <i class="bi bi-people text-secondary opacity-25" style="font-size: 3rem;"></i>
+                                    </div>
+                                    <h6 class="fw-bold">Belum ada data mahasiswa.</h6>
+                                    <p class="small mb-0">Data akan muncul setelah ada mahasiswa yang mendaftar atau ditambahkan manual.</p>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div>
-
-            <div class="mt-3">
-                {{ $students->links() }}
-            </div>
+            
+            {{-- Pagination --}}
+            @if($students->hasPages())
+                <div class="card-footer bg-white border-top-0 py-3 d-flex justify-content-end">
+                    {{ $students->links() }}
+                </div>
+            @endif
         </div>
     </div>
-    </div>
+</div>
 
-    @include('admin.students._add_modal')
+{{-- Include Modal Tambah --}}
+@include('admin.students._add_modal')
+
 @endsection

@@ -8,41 +8,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="counselor_id_book" class="form-label">Pilih Konselor <span class="text-danger">*</span></label>
-                        <select class="form-select" id="counselor_id_book" name="counselor_id" required>
-                            <option value="">Pilih konselor...</option>
-                            @foreach($counselors as $counselor)
-                            <option value="{{ $counselor->id }}">{{ $counselor->name }} - {{ $counselor->specialization }}</option>
-                            @endforeach
-                        </select>
+                    
+                    <div class="alert alert-info border-0 d-flex align-items-start mb-4">
+                        <i class="bi bi-info-circle-fill me-2 mt-1"></i>
+                        <div class="small lh-sm">
+                            <strong>Catatan:</strong> Konselor akan ditentukan oleh tim Satgas PPKPT sesuai dengan ketersediaan dan kebutuhan Anda.
+                        </div>
                     </div>
+
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="date_book" class="form-label">Tanggal <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" id="date_book" name="date" min="{{ now()->addDay()->format('Y-m-d') }}" required>
+                            <label for="date_book" class="form-label small fw-bold">Tanggal <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control bg-light border-0" id="date_book" name="date" min="{{ now()->addDay()->format('Y-m-d') }}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="time_book" class="form-label">Waktu <span class="text-danger">*</span></label>
-                            <input type="time" class="form-control" id="time_book" name="time" required>
+                            <label for="time_book" class="form-label small fw-bold">Waktu <span class="text-danger">*</span></label>
+                            <input type="time" class="form-control bg-light border-0" id="time_book" name="time" required>
                         </div>
                     </div>
+
                     <div class="mb-3">
-                        <label for="duration_book" class="form-label">Durasi Sesi</label>
-                        <select class="form-select" id="duration_book" name="duration">
+                        <label for="duration_book" class="form-label small fw-bold">Durasi Sesi</label>
+                        <select class="form-select bg-light border-0" id="duration_book" name="duration">
                             <option value="30">30 menit</option>
                             <option value="60" selected>60 menit</option>
                             <option value="90">90 menit</option>
                         </select>
                     </div>
+
                     <div class="mb-3">
-                        <label for="topic_book" class="form-label">Topik Konseling (Opsional)</label>
-                        <input type="text" class="form-control" id="topic_book" name="topic" placeholder="Contoh: Masalah kecemasan">
+                        <label for="topic_book" class="form-label small fw-bold">Topik Konseling (Opsional)</label>
+                        <textarea class="form-control bg-light border-0" id="topic_book" name="topic" rows="2" placeholder="Contoh: Saya merasa cemas menghadapi ujian akhir..."></textarea>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-warning text-white">Booking Sekarang</button>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-light fw-medium" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-warning text-white fw-bold shadow-sm">Booking Sekarang</button>
                 </div>
             </form>
         </div>

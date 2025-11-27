@@ -8,23 +8,25 @@
                     <h5 class="modal-title" id="editScheduleModalLabel{{ $schedule->id }}">Edit Jadwal Konseling</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-start">
+                    
+                    {{-- Input Mahasiswa --}}
+                    {{-- Disarankan menggunakan readonly (tidak bisa diubah) agar data tidak tertukar, 
+                         tapi jika ingin tetap bisa diganti, biarkan select ini. --}}
                     <div class="mb-3">
                         <label for="user_id_edit{{ $schedule->id }}" class="form-label">Mahasiswa</label>
                         <select class="form-select" id="user_id_edit{{ $schedule->id }}" name="user_id" required>
                             @foreach($students as $student)
-                            <option value="{{ $student->id }}" {{ $schedule->user_id == $student->id ? 'selected' : '' }}>{{ $student->name }}</option>
+                            <option value="{{ $student->id }}" {{ $schedule->user_id == $student->id ? 'selected' : '' }}>
+                                {{ $student->name }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="counselor_id_edit{{ $schedule->id }}" class="form-label">Konselor</label>
-                        <select class="form-select" id="counselor_id_edit{{ $schedule->id }}" name="counselor_id" required>
-                            @foreach($counselors as $counselor)
-                            <option value="{{ $counselor->id }}" {{ $schedule->counselor_id == $counselor->id ? 'selected' : '' }}>{{ $counselor->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
+                    {{-- BAGIAN INPUT KONSELOR TELAH DIHAPUS --}}
+
+                    {{-- Tanggal dan Waktu --}}
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="date_edit{{ $schedule->id }}" class="form-label">Tanggal</label>
@@ -35,6 +37,8 @@
                             <input type="time" class="form-control" id="time_edit{{ $schedule->id }}" name="time" value="{{ $schedule->time }}" required>
                         </div>
                     </div>
+
+                    {{-- Durasi --}}
                     <div class="mb-3">
                         <label for="duration_edit{{ $schedule->id }}" class="form-label">Durasi (menit)</label>
                         <select class="form-select" id="duration_edit{{ $schedule->id }}" name="duration">
@@ -43,6 +47,8 @@
                             <option value="90" {{ $schedule->duration == '90' ? 'selected' : '' }}>90 menit</option>
                         </select>
                     </div>
+
+                    {{-- Topik --}}
                     <div class="mb-3">
                         <label for="topic_edit{{ $schedule->id }}" class="form-label">Topik</label>
                         <input type="text" class="form-control" id="topic_edit{{ $schedule->id }}" name="topic" value="{{ $schedule->topic }}">

@@ -37,6 +37,7 @@ class ReportController extends Controller
     public function update(Request $request, Report $report)
     {
         $validator = Validator::make($request->all(), [
+            'category' => 'required|string|max:100', // Validasi kategori baru
             'status' => 'required|in:pending,in_progress,resolved,rejected',
             'admin_notes' => 'nullable|string',
         ]);
@@ -48,12 +49,13 @@ class ReportController extends Controller
         }
 
         $report->update([
+            'category' => $request->category, // Simpan perubahan kategori
             'status' => $request->status,
             'admin_notes' => $request->admin_notes,
         ]);
 
         return redirect()->route('admin.reports.index')
-                         ->with('success', 'Status laporan berhasil diperbarui.');
+                         ->with('success', 'Laporan berhasil diperbarui.');
     }
 
     /**

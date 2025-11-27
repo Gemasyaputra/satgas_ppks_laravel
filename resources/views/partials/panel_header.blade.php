@@ -10,6 +10,9 @@
             <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill ms-2">
                 {{ Auth::user()->role == 'admin' ? 'Admin' : 'Mahasiswa' }}
             </span>
+            <button class="btn btn-outline-secondary me-2 d-lg-none" id="headerSidebarToggle">
+                <i class="bi bi-list"></i>
+            </button>
         </div>
     </div>
 </header>
