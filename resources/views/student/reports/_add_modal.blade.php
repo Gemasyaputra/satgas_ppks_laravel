@@ -107,12 +107,12 @@
                                     class="text-danger">*</span></label>
                             <select class="form-select bg-light border-0" name="violence_type" required>
                                 <option value="">Pilih Kategori...</option>
-                                <option value="Kekerasan Verbal">Kekerasan Verbal</option>
+                                <option value="Kekerasan Psikis">Kekerasan Psikis</option>
                                 <option value="Kekerasan Fisik">Kekerasan Fisik</option>
-                                <option value="Pelecehan Seksual">Pelecehan Seksual</option>
-                                <option value="Kekerasan Berbasis Gender Online">KBGO</option>
-                                <option value="Diskriminasi">Diskriminasi</option>
-                                <option value="Lainnya">Lainnya</option>
+                                <option value="Kekerasan Seksual">Kekerasan Seksual</option>
+                                <option value="perundungan">perundungan</option>
+                                <option value="Diskriminasi & Intoleransi">Diskriminasi & Intoleransi</option>
+                                <option value="Kebijakan dengan unsur kekerasan">Kebijakan dengan unsur kekerasan</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">

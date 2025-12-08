@@ -1,4 +1,4 @@
-<nav class="bg-white/95 backdrop-blur-sm px-6 py-4 shadow-lg border-b border-orange-100 sticky top-0 z-50 select-none transition-all duration-300">
+      <nav class="bg-white/95 backdrop-blur-sm px-6 py-4 shadow-lg border-b border-orange-100 sticky top-0 z-50 select-none transition-all duration-300">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
         
         {{-- 1. LOGO --}}

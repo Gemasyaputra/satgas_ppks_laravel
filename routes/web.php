@@ -3,6 +3,7 @@
 // routes/web.php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\ReportController;
@@ -71,3 +72,6 @@ Route::middleware(['auth', 'student'])->prefix('mahasiswa')->name('student.')->g
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login'); 
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);

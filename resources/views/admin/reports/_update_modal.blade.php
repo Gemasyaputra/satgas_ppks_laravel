@@ -15,12 +15,12 @@
                         <select class="form-select" id="category{{ $report->id }}" name="category" required>
                             @php
                                 $categories = [
-                                    'Kekerasan Verbal', 
+                                    'Kekerasan Psikis', 
                                     'Kekerasan Fisik', 
                                     'Pelecehan Seksual', 
-                                    'Bullying', 
-                                    'Diskriminasi', 
-                                    'Lainnya',
+                                    'Perundungan', 
+                                    'Diskriminasi & intoleransi', 
+                                    'kebijakan dengan unsur kekerasan',
                                     'Laporan Masuk', // Kategori default lama
                                     'Laporan Rinci'  // Kategori default baru
                                 ];

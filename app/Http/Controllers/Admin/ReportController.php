@@ -44,8 +44,8 @@ class ReportController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $report->update([
@@ -55,7 +55,7 @@ class ReportController extends Controller
         ]);
 
         return redirect()->route('admin.reports.index')
-                         ->with('success', 'Laporan berhasil diperbarui.');
+            ->with('success', 'Laporan berhasil diperbarui.');
     }
 
     /**
@@ -69,8 +69,8 @@ class ReportController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         ReportMessage::create([
@@ -82,6 +82,9 @@ class ReportController extends Controller
 
         // (Opsional: Kirim notifikasi ke mahasiswa di sini)
 
-        return redirect()->back()->with('success', 'Pesan berhasil terkirim.');
+        return redirect()->back()->with([
+            'success' => 'Pesan terkirim',
+            'active_tab' => 'chat'
+        ]);
     }
 }
