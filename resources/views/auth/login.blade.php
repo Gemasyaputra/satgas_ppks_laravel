@@ -3,28 +3,83 @@
 @section('content')
     <div class="min-h-screen flex bg-white font-poppins">
 
-        {{-- BAGIAN KIRI: Branding Simple & Clean --}}
-        <div
-            class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-orange-600 to-orange-500 relative items-center justify-center">
-            {{-- Pattern titik-titik halus --}}
-            <div class="absolute inset-0 opacity-10"
-                style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        {{-- BAGIAN KIRI: Enhanced Branding --}}
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 relative items-center justify-center overflow-hidden">
+            
+            {{-- Animated Background Shapes --}}
+            <div class="absolute inset-0">
+                {{-- Pattern titik-titik halus --}}
+                <div class="absolute inset-0 opacity-10"
+                    style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+                
+                {{-- Decorative Circles --}}
+                <div class="absolute top-20 left-20 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-20 right-20 w-96 h-96 bg-amber-300/20 rounded-full blur-3xl"></div>
+                <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-orange-400/15 rounded-full blur-2xl"></div>
+            </div>
 
-            <div class="relative z-10 text-center px-12 max-w-lg">
+            <div class="relative z-10 text-center px-12 max-w-xl">
 
-                {{-- Logo dengan Background Lingkaran Putih --}}
-                <div class="mb-8 transform hover:scale-105 transition-transform duration-500">
-                    <img src="{{ asset('images/logo_.png') }}" alt="Logo Satgas" class="w-32 h-32 object-contain mx-auto">
+                {{-- Logo Container dengan Efek Glow --}}
+                <div class="mb-12 relative">
+                    {{-- Glow Effect Background --}}
+                    {{-- <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl scale-150 animate-pulse"></div> --}}
+                    
+                    {{-- Logo dengan Background Lingkaran Putih --}}
+                    <div class="relative rounded-full p-2 shadow-2xl transform hover:scale-105 hover:rotate-3 transition-all duration-500 inline-block">
+                        <img src="{{ asset('images/logo_.png') }}" alt="Logo Satgas" class="w-38 h-38 object-contain">
+                    </div>
                 </div>
 
-                {{-- Teks Branding --}}
-                <h1 class="text-5xl font-bold text-white mb-4 tracking-wide drop-shadow-md">Satgas PPKPT</h1>
-                <p class="text-orange-50 text-xl font-light leading-relaxed opacity-90">
-                    Politeknik Negeri Padang
-                </p>
+                {{-- Teks Branding dengan Animasi --}}
+                <div class="space-y-6">
+                    <h1 class="text-6xl font-extrabold text-white mb-4 tracking-tight drop-shadow-2xl leading-tight">
+                        Satgas PPKPT
+                    </h1>
+                    
+                    <div class="inline-block bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                        <p class="text-white text-xl font-semibold">
+                            Politeknik Negeri Padang
+                        </p>
+                    </div>
 
-                {{-- Garis pemanis simple --}}
-                <div class="mt-8 w-24 h-1.5 bg-white/30 mx-auto rounded-full"></div>
+                    {{-- Tagline --}}
+                    <p class="text-orange-50 text-lg font-light leading-relaxed opacity-90 mt-6 max-w-md mx-auto">
+                        Sistem Informasi Satgas untuk Pengelolaan Akademik dan Kemahasiswa
+                    </p>
+
+                    {{-- Decorative Line --}}
+                    <div class="flex items-center justify-center gap-3 mt-8">
+                        <div class="w-12 h-1 bg-white/40 rounded-full"></div>
+                        <div class="w-8 h-1 bg-white/60 rounded-full"></div>
+                        <div class="w-4 h-1 bg-white/80 rounded-full"></div>
+                    </div>
+                </div>
+
+                {{-- Features Icons --}}
+                <div class="mt-16 grid grid-cols-3 gap-6">
+                    <div class="text-center transform hover:scale-110 transition-transform duration-300">
+                        <div class="bg-white/20 backdrop-blur-sm w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <i class="bi bi-shield-check text-3xl text-white"></i>
+                        </div>
+                        <p class="text-white/90 text-xs font-medium">Aman</p>
+                    </div>
+                    
+                    <div class="text-center transform hover:scale-110 transition-transform duration-300">
+                        <div class="bg-white/20 backdrop-blur-sm w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <i class="bi bi-lightning-charge text-3xl text-white"></i>
+                        </div>
+                        <p class="text-white/90 text-xs font-medium">Cepat</p>
+                    </div>
+                    
+                    <div class="text-center transform hover:scale-110 transition-transform duration-300">
+                        <div class="bg-white/20 backdrop-blur-sm w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <i class="bi bi-people text-3xl text-white"></i>
+                        </div>
+                        <p class="text-white/90 text-xs font-medium">Terpercaya</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -93,7 +148,6 @@
                     </div>
 
                     {{-- Tombol Login (Rounded Full / Pill Shape) --}}
-                    {{-- Tombol Login Utama --}}
                     <button type="submit"
                         class="w-full py-4 px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-bold !rounded-full shadow-lg shadow-orange-200 transform hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 mt-4 border-0 outline-none focus:outline-none">
                         <span>Masuk Sekarang</span>
@@ -129,6 +183,7 @@
 
                         <span class="group-hover:text-gray-900 transition-colors">Google</span>
                     </a>
+                    
                     {{-- Register Link --}}
                     <div class="text-center pt-6">
                         <p class="text-sm text-gray-500">

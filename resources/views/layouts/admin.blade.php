@@ -7,6 +7,9 @@
     <title>@yield('title') - Panel Admin</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="{{ asset('images/logo_.png') }}" type="image/png">
+    <link rel="shorcut icon" href="{{ asset('images/logo_.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo_.png') }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>

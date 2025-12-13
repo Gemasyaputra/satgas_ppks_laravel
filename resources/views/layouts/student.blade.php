@@ -13,6 +13,10 @@
     {{-- Vite (Laravel Mix) --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <link rel="icon" href="{{ asset('images/logo_.png') }}" type="image/png">
+    <link rel="shorcut icon" href="{{ asset('images/logo_.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo_.png') }}">
+
     {{-- Custom Style --}}
     <style>
         /* Sidebar default */

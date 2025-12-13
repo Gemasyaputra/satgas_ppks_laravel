@@ -133,7 +133,7 @@
                 </div>
                 <h4 class="fw-bold mb-0 text-dark">{{ $user->name }}</h4>
                 <p class="text-muted mb-0">{{ $user->nim }}</p>
-                <span class="badge bg-warning-subtle text-warning-emphasis mt-2 rounded-pill px-3">Mahasiswa</span>
+                <span class="badge bg-warning-subtle text-warning-emphasis mt-2 rounded-pill px-3"></span>
             </div>
 
             <div class="card shadow-sm border-0">
@@ -147,7 +147,7 @@
                         <div class="mb-3">
                             <label for="current_password" class="form-label small fw-bold">Password Saat Ini <span class="text-danger">*</span></label>
                             <input type="password" class="form-control bg-light border-0" id="current_password" name="current_password" required>
-                        </div>
+                        </div>  
                         <div class="mb-3">
                             <label for="password" class="form-label small fw-bold">Password Baru <span class="text-danger">*</span></label>
                             <input type="password" class="form-control bg-light border-0" id="password" name="password" required>
