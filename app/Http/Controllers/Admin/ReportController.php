@@ -16,8 +16,14 @@ class ReportController extends Controller
      */
     public function index()
     {
-        // 'with('user')' (Eager Loading) untuk mengambil data mahasiswa (pelapor)
-        $reports = Report::with('user')->latest()->paginate(10);
+        // Tambahkan 'messages' dengan kondisi khusus (unread)
+        $reports = Report::with('user')
+            ->withCount(['messages as unread_messages_count' => function ($query) {
+                $query->where('sender_role', 'student')->where('is_read', false);
+            }])
+            ->latest()
+            ->paginate(10);
+
         return view('admin.reports.index', compact('reports'));
     }
 
@@ -26,8 +32,16 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        // Load relasi user (pelapor) dan messages (beserta user pengirim pesan)
+        // 1. Tandai pesan dari 'student' sebagai sudah dibaca (is_read = true)
+        //    Kita update hanya pesan yang statusnya BELUM DIBACA (false)
+        ReportMessage::where('report_id', $report->id)
+            ->where('sender_role', 'student') // Hanya pesan dari mahasiswa
+            ->where('is_read', false)
+            ->update(['is_read' => true]);
+
+        // 2. Load relasi seperti biasa
         $report->load('user', 'messages.user');
+
         return view('admin.reports.show', compact('report'));
     }
 
@@ -86,5 +100,17 @@ class ReportController extends Controller
             'success' => 'Pesan terkirim',
             'active_tab' => 'chat'
         ]);
+    }
+
+    /**
+     * Mengambil isi chat terbaru (untuk AJAX Polling)
+     */
+    public function fetchChat(Report $report)
+    {
+        // Pastikan relasi pesan ter-load
+        $report->load('messages.user');
+
+        // Kembalikan hanya potongan HTML chatnya saja
+        return view('partials.chat_content', compact('report'));
     }
 }

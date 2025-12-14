@@ -18,7 +18,6 @@ class Report extends Model
         'status',
         'admin_notes',
         'is_anonymous',
-        
         'reporter_email',
         'reporter_name',
         'reporter_pob',
@@ -43,7 +42,7 @@ class Report extends Model
     ];
     public function user()
     {
-        return $this->belongsTo(User::class); // Relasi ke mahasiswa
+        return $this->belongsTo(User::class)->oldest(); // Relasi ke mahasiswa
     }
 
     public function messages()

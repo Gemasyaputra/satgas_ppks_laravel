@@ -21,7 +21,8 @@
     #adminSidebar .nav-link:hover:not(.active) {
         background-color: #fff7ed; /* Orange sangat muda (subtle) */
         color: #c2410c; /* Orange gelap */
-        transform: translateX(3px); /* Efek geser sedikit */
+        /* transform: translateX(3px); Efek geser sedikit */
+        padding-left: 1.25rem;
     }
 
     #adminSidebar .nav-link i {

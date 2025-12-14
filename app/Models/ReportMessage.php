@@ -14,6 +14,7 @@ class ReportMessage extends Model
         'user_id', // Pengirim
         'message',
         'sender_role',
+        'is_read',
     ];
 
     public function user()

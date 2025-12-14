@@ -55,10 +55,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('profil', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profil/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::get('reports/{report}/chat-content', [App\Http\Controllers\Admin\ReportController::class, 'fetchChat'])->name('reports.fetchChat');
 });
 
 // --- GRUP PANEL MAHASISWA ---
-Route::middleware(['auth', 'student'])->prefix('portal')->name('student.')->group(function () {
+Route::middleware(['auth', 'student'])->prefix('mahasiswa')->name('student.')->group(function () {
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
     Route::get('laporan', [StudentReportController::class, 'index'])->name('reports.index');
     Route::post('laporan', [StudentReportController::class, 'store'])->name('reports.store');
@@ -72,11 +73,12 @@ Route::middleware(['auth', 'student'])->prefix('portal')->name('student.')->grou
     Route::get('profil', [StudentProfileController::class, 'index'])->name('profile.index');
     Route::put('profil', [StudentProfileController::class, 'updateProfile'])->name('profile.update');
     Route::put('profil/password', [StudentProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::get('laporan/{report}/chat-content', [App\Http\Controllers\Student\ReportController::class, 'fetchChat'])->name('reports.fetchChat');
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);

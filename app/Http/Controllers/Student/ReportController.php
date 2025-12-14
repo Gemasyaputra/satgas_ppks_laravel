@@ -207,4 +207,16 @@ class ReportController extends Controller
             'active_tab' => 'chat'
         ]);
     }
+
+    /**
+     * Mengambil isi chat terbaru (untuk AJAX Polling)
+     */
+    public function fetchChat(Report $report)
+    {
+        // Pastikan relasi pesan ter-load
+        $report->load('messages.user');
+        
+        // Kembalikan hanya potongan HTML chatnya saja
+        return view('partials.chat_content', compact('report'));
+    }
 }
