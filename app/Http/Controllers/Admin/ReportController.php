@@ -54,7 +54,7 @@ class ReportController extends Controller
             'admin_notes' => $request->admin_notes,
         ]);
 
-        return redirect()->route('admin.reports.index')
+        return redirect()->back()
             ->with('success', 'Laporan berhasil diperbarui.');
     }
 

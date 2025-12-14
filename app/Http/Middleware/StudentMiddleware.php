@@ -11,11 +11,11 @@ class StudentMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role == 'student') {
-            return $next($request);
-        }
+       // Izinkan Student, Lecturer, ATAU Public masuk ke area ini
+    if (Auth::check() && in_array(Auth::user()->role, ['student', 'lecturer', 'public'])) {
+        return $next($request);
+    }
 
-        // Jika bukan mahasiswa, kembalikan ke halaman home
-        return redirect('/home')->with('error', 'Anda harus login sebagai mahasiswa.');
+    return redirect('/home')->with('error', 'Akses ditolak.');
     }
 }

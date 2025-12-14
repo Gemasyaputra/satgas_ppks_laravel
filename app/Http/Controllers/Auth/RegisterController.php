@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string', 'in:student,lecturer,public'],
             // 'nim' => ['required', 'string', 'max:255', 'unique:users'], // Validasi NIM
             // 'phone' => ['required', 'string', 'max:20'],
             // 'program' => ['required', 'string'],
@@ -71,6 +72,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role'], // Otomatis set role sebagai 'student'
+            'is_active' => true, // Otomatis aktif
             
             // Data Mahasiswa
             // 'nim' => $data['nim'],
@@ -78,8 +81,6 @@ class RegisterController extends Controller
             // 'program' => $data['program'],
             // 'department' => $data['department'],
             
-            'role' => 'student', // Otomatis set role sebagai 'student'
-            'is_active' => true, // Otomatis aktif
         ]);
     }
 }

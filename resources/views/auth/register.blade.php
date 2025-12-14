@@ -134,6 +134,22 @@
                         @enderror
                     </div>
 
+                    <div>
+                        <label for="role" class="block text-sm font-bold text-gray-700 mb-2 ml-3">Daftar Sebagai</label>
+                        <div class="col-md-6">
+                            <select id="role" name="role" class="form-select @error('role') is-invalid @enderror"
+                                required>
+                                <option value="" disabled selected>-- Pilih Status --</option>
+                                <option value="student">Mahasiswa</option>
+                                <option value="lecturer">Dosen / Tendik</option>
+                                <option value="public">Masyarakat Umum</option>
+                            </select>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                    </div>
+
                     {{-- Input Password --}}
                     <div>
                         <label for="password" class="block text-sm font-bold text-gray-700 mb-2 ml-3">Password</label>

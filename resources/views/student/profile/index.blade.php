@@ -56,27 +56,38 @@
                         <div class="col-sm-8 fw-medium text-dark">{{ $user->name }}</div>
                     </div>
                     <hr class="text-secondary opacity-10">
+                    
                     <div class="row mb-3 align-items-center">
-                        <div class="col-sm-4 text-muted small text-uppercase fw-bold">NIM</div>
-                        <div class="col-sm-8 fw-medium text-dark">{{ $user->nim }}</div>
+                        <div class="col-sm-4 text-muted small text-uppercase fw-bold">
+                            {{ $user->role == 'lecturer' ? 'NIP / NIK' : ($user->role == 'public' ? 'NIK (KTP)' : 'NIM') }}
+                        </div>
+                        <div class="col-sm-8 fw-medium text-dark">{{ $user->nim ?? '-' }}</div>
                     </div>
                     <hr class="text-secondary opacity-10">
+                    
                     <div class="row mb-3 align-items-center">
                         <div class="col-sm-4 text-muted small text-uppercase fw-bold">Email</div>
                         <div class="col-sm-8 fw-medium text-dark">{{ $user->email }}</div>
                     </div>
                     <hr class="text-secondary opacity-10">
+                    
                     <div class="row mb-3 align-items-center">
                         <div class="col-sm-4 text-muted small text-uppercase fw-bold">No. Telepon</div>
                         <div class="col-sm-8 fw-medium text-dark">{{ $user->phone ?? '-' }}</div>
                     </div>
+
+                    @if($user->role != 'public')
                     <hr class="text-secondary opacity-10">
                     <div class="row mb-3 align-items-center">
-                        <div class="col-sm-4 text-muted small text-uppercase fw-bold">Jurusan / Prodi</div>
+                        <div class="col-sm-4 text-muted small text-uppercase fw-bold">
+                            {{ $user->role == 'lecturer' ? 'Unit Kerja / Jabatan' : 'Jurusan / Prodi' }}
+                        </div>
                         <div class="col-sm-8 fw-medium text-dark">
-                            {{ $user->department ?? '-' }} <span class="text-muted mx-1">/</span> {{ $user->program ?? '-' }}
+                            {{ $user->department ?? '-' }} 
+                            @if($user->program) <span class="text-muted mx-1">/</span> {{ $user->program }} @endif
                         </div>
                     </div>
+                    @endif
 
                     <div class="collapse mt-4" id="collapseEditProfile">
                         <div class="card card-body bg-light border-0">
@@ -84,33 +95,54 @@
                             <form action="{{ route('student.profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+                                
                                 <div class="mb-3">
                                     <label for="name" class="form-label small fw-bold">Nama Lengkap <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" required>
                                 </div>
+                                
+                                <div class="mb-3">
+                                    <label for="nim" class="form-label small fw-bold">
+                                        {{ $user->role == 'lecturer' ? 'NIP / NIK' : ($user->role == 'public' ? 'NIK (No. KTP)' : 'NIM') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="nim" name="nim" value="{{ old('nim', $user->nim) }}" required>
+                                    <div class="form-text">Pastikan nomor identitas sesuai kartu identitas resmi.</div>
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="email" class="form-label small fw-bold">Email <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" required>
                                 </div>
+                                
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label small fw-bold">Nomor Telepon</label>
+                                    <label for="phone" class="form-label small fw-bold">Nomor Telepon / WA</label>
                                     <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone', $user->phone) }}">
                                 </div>
+
+                                @if($user->role != 'public')
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="department" class="form-label small fw-bold">
+                                            {{ $user->role == 'lecturer' ? 'Unit Kerja / Fakultas' : 'Jurusan' }}
+                                        </label>
+                                        <input type="text" class="form-control" id="department" name="department" value="{{ old('department', $user->department) }}">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="program" class="form-label small fw-bold">
+                                            {{ $user->role == 'lecturer' ? 'Jabatan / Posisi' : 'Program Studi' }}
+                                        </label>
+                                        <input type="text" class="form-control" id="program" name="program" value="{{ old('program', $user->program) }}">
+                                    </div>
+                                </div>
+                                @endif
+
                                 <div class="mb-3">
                                     <label for="photo" class="form-label small fw-bold">Ganti Foto Profil</label>
                                     <input type="file" class="form-control" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg">
                                     <div class="form-text">Format: JPG, PNG. Maks 2MB.</div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="department" class="form-label small fw-bold">Jurusan</label>
-                                        <input type="text" class="form-control" id="department" name="department" value="{{ old('department', $user->department) }}">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="program" class="form-label small fw-bold">Program Studi</label>
-                                        <input type="text" class="form-control" id="program" name="program" value="{{ old('program', $user->program) }}">
-                                    </div>
-                                </div>
+
                                 <div class="d-flex justify-content-end gap-2 mt-2">
                                     <button type="button" class="btn btn-light text-muted" data-bs-toggle="collapse" data-bs-target="#collapseEditProfile">Batal</button>
                                     <button type="submit" class="btn btn-warning text-white fw-bold shadow-sm">Simpan Perubahan</button>
@@ -132,10 +164,21 @@
                     <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle p-2" title="Status Aktif"></span>
                 </div>
                 <h4 class="fw-bold mb-0 text-dark">{{ $user->name }}</h4>
-                <p class="text-muted mb-0">{{ $user->nim }}</p>
-                <span class="badge bg-warning-subtle text-warning-emphasis mt-2 rounded-pill px-3"></span>
+                <p class="text-muted mb-0">{{ $user->nim ?? 'Belum ada data identitas' }}</p>
+                
+                @php
+                    $roleLabel = match($user->role) {
+                        'lecturer' => 'Dosen / Tendik',
+                        'public' => 'Masyarakat Umum',
+                        default => 'Mahasiswa'
+                    };
+                @endphp
+                <span class="badge bg-warning-subtle text-warning-emphasis mt-2 rounded-pill px-3">
+                    {{ $roleLabel }}
+                </span>
             </div>
 
+            @if(empty($user->google_id))
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-white border-bottom-0 pt-4 px-4">
                     <h5 class="mb-0 fw-bold text-danger"><i class="bi bi-shield-lock me-2"></i>Keamanan Akun</h5>
@@ -162,6 +205,11 @@
                     </form>
                 </div>
             </div>
+            @else
+            <div class="alert alert-info border-0 shadow-sm">
+                <i class="bi bi-google me-2"></i> Anda login menggunakan Akun Google. Pengaturan password dikelola melalui Google.
+            </div>
+            @endif
         </div>
     </div>
 </div>
