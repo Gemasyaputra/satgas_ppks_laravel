@@ -58,7 +58,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 // --- GRUP PANEL MAHASISWA ---
-Route::middleware(['auth', 'student'])->prefix('mahasiswa')->name('student.')->group(function () {
+Route::middleware(['auth', 'student'])->prefix('portal')->name('student.')->group(function () {
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
     Route::get('laporan', [StudentReportController::class, 'index'])->name('reports.index');
     Route::post('laporan', [StudentReportController::class, 'store'])->name('reports.store');

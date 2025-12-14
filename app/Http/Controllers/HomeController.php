@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; // Pastikan ini ada
 
 class HomeController extends Controller
 {
@@ -14,13 +14,19 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (Auth::user()->role == 'admin') {
+        $user = Auth::user();
+
+        // 1. Jika Admin -> Lempar ke Admin Dashboard
+        if ($user->role == 'admin') {
             return redirect()->route('admin.dashboard');
-        } elseif (Auth::user()->role == 'student') {
+        }
+
+        // 2. Jika Mahasiswa/Dosen/Umum -> Lempar ke Portal Mahasiswa
+        if (in_array($user->role, ['student', 'lecturer', 'public'])) {
             return redirect()->route('student.dashboard');
         }
 
-        // Fallback
-        return redirect('/');
+        // Default (jika error)
+        return view('home');
     }
 }

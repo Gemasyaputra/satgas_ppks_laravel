@@ -4,13 +4,24 @@
 
         <div class="d-flex align-items-center">
             <i class="bi bi-person-fill text-warning me-2 fs-5"></i>
-            <span class="navbar-text">
-                Halo, {{ Auth::user()->name }}
+            
+            <span class="navbar-text fw-semibold">
+                Hai, {{ Auth::user()->name }}
             </span>
+
             <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill ms-2">
-                {{ Auth::user()->role == 'admin' ? 'Admin' : 'Mahasiswa' }}
+                @if(Auth::user()->role == 'admin')
+                    Admin
+                @elseif(Auth::user()->role == 'lecturer')
+                    Dosen
+                @elseif(Auth::user()->role == 'public')
+                    Masyarakat Umum
+                @else
+                    Mahasiswa
+                @endif
             </span>
-            <button class="btn btn-outline-secondary me-2 d-lg-none" id="headerSidebarToggle">
+
+            <button class="btn btn-outline-secondary ms-3 d-lg-none" id="headerSidebarToggle">
                 <i class="bi bi-list"></i>
             </button>
         </div>
