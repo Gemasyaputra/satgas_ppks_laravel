@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CounselorController;
@@ -50,6 +51,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('schedules/{schedule}/update-status', [AdminScheduleController::class, 'updateStatus'])->name('schedules.updateStatus');
     Route::resource('schedules', AdminScheduleController::class);
     Route::resource('services', ServiceController::class);
+
+    Route::get('profil', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profil/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 });
 
 // --- GRUP PANEL MAHASISWA ---
@@ -73,5 +78,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login'); 
+Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
