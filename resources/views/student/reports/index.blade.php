@@ -65,17 +65,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-       @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error! Gagal mengirim laporan:</strong>
-            <ul class="mb-0 mt-2">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error! Gagal mengirim laporan:</strong>
+                <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         @forelse ($reports as $report)
             <div class="card shadow-sm border-0 mb-3">
@@ -83,7 +83,18 @@
                     <div class="row g-3 align-items-start">
 
                         <div class="col-12 col-md">
-                            <h5 class="fw-medium text-dark mb-1 text-break">{{ $report->title }}</h5>
+                            {{-- Baris Judul & Badge Notifikasi --}}
+                            <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                                <h5 class="fw-medium text-dark mb-0 text-break">{{ $report->title }}</h5>
+
+                                {{-- LOGIKA NOTIFIKASI: Muncul jika ada pesan baru dari Admin --}}
+                                @if ($report->unread_messages_count > 0)
+                                    <span class="badge bg-danger rounded-pill shadow-sm animate-pulse"
+                                        style="font-size: 0.65rem; padding: 0.35em 0.6em;">
+                                        {{ $report->unread_messages_count }} Balasan Baru
+                                    </span>
+                                @endif
+                            </div>
 
                             <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
                                 @php
@@ -109,8 +120,6 @@
                                             class="bi bi-shield-lock-fill me-1"></i> Anonim</span>
                                 @endif
                             </div>
-
-                            <p class="text-muted mb-0">{{ Str::limit($report->description, 150) }}</p>
                         </div>
 
                         <div class="col-12 col-md-auto">
