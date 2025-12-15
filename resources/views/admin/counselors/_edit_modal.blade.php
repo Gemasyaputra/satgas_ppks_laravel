@@ -22,10 +22,10 @@
                             <label for="name{{ $counselor->id }}" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="name{{ $counselor->id }}" name="name" value="{{ $counselor->name }}" required>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="specialization{{ $counselor->id }}" class="form-label">Spesialisasi <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="specialization{{ $counselor->id }}" name="specialization" value="{{ $counselor->specialization }}" required>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="row mb-3">
@@ -51,10 +51,10 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="description{{ $counselor->id }}" class="form-label">Deskripsi</label>
                         <textarea class="form-control" id="description{{ $counselor->id }}" name="description" rows="3">{{ $counselor->description }}</textarea>
-                    </div>
+                    </div> --}}
 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="is_active{{ $counselor->id }}" name="is_active" value="1" {{ $counselor->is_active ? 'checked' : '' }}>

@@ -35,7 +35,7 @@
                         <tr>
                             <th scope="col" class="ps-4 py-3 border-0 rounded-start">Anggota Satgas</th>
                             <th scope="col" class="py-3 border-0">Peran</th>
-                            <th scope="col" class="py-3 border-0">Spesialisasi</th>
+                            {{-- <th scope="col" class="py-3 border-0">Spesialisasi</th> --}}
                             <th scope="col" class="py-3 border-0">Kontak</th>
                             <th scope="col" class="py-3 border-0">Status</th>
                             <th scope="col" class="text-end pe-4 py-3 border-0 rounded-end">Aksi</th>
@@ -78,12 +78,12 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <div class="d-flex align-items-center text-secondary">
                                         <i class="bi bi-stars text-warning me-2"></i>
                                         <span>{{ $counselor->specialization }}</span>
                                     </div>
-                                </td>
+                                </td> --}}
                                 <td>
                                     <div class="d-flex align-items-center text-secondary">
                                         <i class="bi bi-whatsapp text-success me-2"></i>

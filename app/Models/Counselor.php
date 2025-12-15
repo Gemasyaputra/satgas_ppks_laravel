@@ -12,8 +12,8 @@ class Counselor extends Model
         'email',
         'phone',
         'role',
-        'specialization',
-        'description',
+        // 'specialization',
+        // 'description',
         'experience',
         'photo_url',
         'is_active'

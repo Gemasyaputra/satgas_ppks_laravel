@@ -23,12 +23,12 @@
                             <input type="text" class="form-control" id="name" name="name"
                                 placeholder="Dr. Nama Lengkap, M.Psi" required>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="specialization" class="form-label">Spesialisasi <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="specialization" name="specialization"
                                 placeholder="Contoh: Psikolog Klinis" required>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="row mb-3">
@@ -58,10 +58,10 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi</label>
                         <textarea class="form-control" id="description" name="description" rows="3" placeholder="Jelaskan keahlian..."></textarea>
-                    </div>
+                    </div> --}}
 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="is_active" name="is_active"

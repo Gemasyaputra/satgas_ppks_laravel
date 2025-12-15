@@ -39,8 +39,8 @@ class CounselorController extends Controller
             'email' => 'required|email|unique:counselors,email',
             'phone' => 'required|string|max:20',
             'role' => 'required|in:Mahasiswa Satgas,Tenaga Pendidik',
-            'specialization' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            // 'specialization' => 'required|string|max:255',
+            // 'description' => 'nullable|string',
             'experience' => 'nullable|string|max:50',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
 
@@ -65,8 +65,8 @@ class CounselorController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'role' => $request->role,
-            'specialization' => $request->specialization,
-            'description' => $request->description,
+            // 'specialization' => $request->specialization,
+            // 'description' => $request->description,
             'experience' => $request->experience,
             'photo_url' => $dataPath,
             'is_active' => $request->has('is_active'), // Checkbox
@@ -104,8 +104,8 @@ class CounselorController extends Controller
             'email' => 'required|email|unique:counselors,email,' . $counselor->id, // Abaikan email saat ini
             'phone' => 'required|string|max:20',
             'role' => 'required|in:Mahasiswa Satgas,Tenaga Pendidik',
-            'specialization' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            // 'specialization' => 'required|string|max:255',
+            // 'description' => 'nullable|string',
             'experience' => 'nullable|string|max:50',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -132,8 +132,8 @@ class CounselorController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'role' => $request->role,
-            'specialization' => $request->specialization,
-            'description' => $request->description,
+            // 'specialization' => $request->specialization,
+            // 'description' => $request->description,
             'experience' => $request->experience,
             'photo_url' => $dataPath,
             'is_active' => $request->has('is_active'),
