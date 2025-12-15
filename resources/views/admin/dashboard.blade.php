@@ -82,7 +82,7 @@
                     <div class="progress mt-2" style="height: 4px;">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 50%"></div>
                     </div>
-                    <small class="text-muted mt-2 d-block" style="font-size: 0.75rem;">Sesi konseling terjadwal</small>
+                    <small class="text-muted mt-2 d-block" style="font-size: 0.75rem;">Sesi Pemeriksaan terjadwal</small>
                 </div>
             </div>
         </div>
@@ -202,11 +202,11 @@
             </div>
         </div>
 
-        {{-- LIST JADWAL KONSELING --}}
+        {{-- LIST JADWAL Pemeriksaan --}}
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-header bg-white border-0 py-3 px-4 d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 fw-bold text-dark">Jadwal Konseling</h5>
+                    <h5 class="mb-0 fw-bold text-dark">Jadwal Pemeriksaan</h5>
                     <a href="{{ route('admin.schedules.index') }}" class="btn btn-sm btn-link text-muted text-decoration-none">Lihat Semua</a>
                 </div>
                 <div class="card-body pt-0 px-4 pb-4">

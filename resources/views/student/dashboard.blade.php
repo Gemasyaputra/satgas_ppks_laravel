@@ -36,7 +36,7 @@
                 <div class="card shadow-sm border-0 p-3 h-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <p class="text-muted mb-1 small text-uppercase fw-bold">Jadwal Konseling</p>
+                            <p class="text-muted mb-1 small text-uppercase fw-bold">Jadwal Pemeriksaan</p>
                             <h3 class="fw-bold mb-0 text-dark">{{ $stats['upcoming_schedules'] }}</h3>
                         </div>
                         <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
@@ -121,7 +121,7 @@
                             <div>
                                 <span class="fw-bold text-dark d-block">
                                     @if ($schedule->counselor)
-                                        Konseling dgn {{ $schedule->counselor->name }}
+                                        Pemeriksaan dgn {{ $schedule->counselor->name }}
                                     @else
                                         <span class="fst-italic text-muted">Menunggu Penugasan</span>
                                     @endif
@@ -146,7 +146,7 @@
                     @empty
                         <div class="text-center py-4">
                             <i class="bi bi-calendar-x text-muted fs-1"></i>
-                            <p class="text-muted mt-2">Tidak ada jadwal konseling.</p>
+                            <p class="text-muted mt-2">Tidak ada jadwal Pemeriksaan.</p>
                         </div>
                     @endforelse
 

@@ -181,7 +181,7 @@
                     <div class="mb-3">
                         <label class="form-label small fw-bold">Kebutuhan Korban Saat Ini <span class="text-danger">*</span></label>
                         <textarea class="form-control" name="victim_needs" rows="2"
-                            placeholder="Contoh: Konseling, Pendampingan Hukum" required></textarea>
+                            placeholder="Contoh: Pemeriksaan, Pendampingan Hukum" required></textarea>
                     </div>
 
                 </div>

@@ -4,7 +4,7 @@
             <form action="{{ route('student.counseling.store') }}" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="bookCounselingModalLabel">Booking Konseling Baru</h5>
+                    <h5 class="modal-title" id="bookCounselingModalLabel">Booking Pemeriksaan Baru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="topic_book" class="form-label small fw-bold">Topik Konseling (Opsional)</label>
+                        <label for="topic_book" class="form-label small fw-bold">Topik Pemeriksaan (Opsional)</label>
                         <textarea class="form-control bg-light border-0" id="topic_book" name="topic" rows="2" placeholder="Contoh: Saya merasa cemas menghadapi ujian akhir..."></textarea>
                     </div>
                 </div>

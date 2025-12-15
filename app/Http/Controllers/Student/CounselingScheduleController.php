@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class CounselingScheduleController extends Controller
 {
     /**
-     * Menampilkan daftar jadwal konseling mahasiswa.
+     * Menampilkan daftar jadwal Pemeriksaan mahasiswa.
      */
     public function index()
     {
@@ -67,11 +67,11 @@ class CounselingScheduleController extends Controller
         ]);
 
         return redirect()->route('student.counseling.index')
-                         ->with('success', 'Permintaan konseling terkirim. Satgas akan menentukan konselor untuk Anda.');
+                         ->with('success', 'Permintaan Pemeriksaan terkirim. Satgas akan menentukan konselor untuk Anda.');
     }
 
     /**
-     * Membatalkan jadwal konseling.
+     * Membatalkan jadwal Pemeriksaan.
      */
     public function cancel(CounselingSchedule $schedule)
     {

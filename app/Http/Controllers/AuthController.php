@@ -96,6 +96,6 @@ class AuthController extends Controller
         // D. Login
         Auth::login($user);
 
-        return redirect('/mahasiswa/dashboard');
+        return redirect('/portal/dashboard');
     }
 }

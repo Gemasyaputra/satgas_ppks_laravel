@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Jadwal Konseling')
+@section('title', 'Manajemen Jadwal Pemeriksaan')
 
 @section('content')
 <div class="container-fluid">
@@ -8,8 +8,8 @@
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-body d-flex justify-content-between align-items-center">
             <div>
-                <h2 class="h4 fw-medium mb-1">Manajemen Jadwal Konseling</h2>
-                <p class="text-muted mb-0">Kelola sesi konseling antara mahasiswa dan konselor.</p>
+                <h2 class="h4 fw-medium mb-1">Manajemen Jadwal Pemeriksaan</h2>
+                <p class="text-muted mb-0">Kelola sesi Pemeriksaan antara mahasiswa dan konselor.</p>
             </div>
             <button class="btn btn-warning text-white fw-bold" data-bs-toggle="modal" data-bs-target="#addScheduleModal">
                 <i class="bi bi-plus-circle-fill me-2"></i> Tambah Jadwal
@@ -183,7 +183,7 @@
                             {{-- Colspan diubah jadi 5 karena kolom Konselor dihapus --}}
                             <td colspan="5" class="text-center text-muted py-5">
                                 <i class="bi bi-calendar-x fs-1 opacity-25 d-block mb-2"></i>
-                                Belum ada jadwal konseling.
+                                Belum ada jadwal Pemeriksaan.
                             </td>
                         </tr>
                         @endforelse

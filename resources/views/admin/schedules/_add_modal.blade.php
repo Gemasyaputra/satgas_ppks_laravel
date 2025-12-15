@@ -4,7 +4,7 @@
             <form action="{{ route('admin.schedules.store') }}" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addScheduleModalLabel">Tambah Jadwal Konseling</h5>
+                    <h5 class="modal-title" id="addScheduleModalLabel">Tambah Jadwal Pemeriksaan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="topic" class="form-label">Topik Konseling</label>
+                        <label for="topic" class="form-label">Topik Pemeriksaan</label>
                         <input type="text" class="form-control" id="topic" name="topic" placeholder="Contoh: Konseling trauma">
                     </div>
                 </div>

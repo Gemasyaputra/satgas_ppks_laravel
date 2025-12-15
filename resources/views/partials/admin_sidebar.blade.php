@@ -119,7 +119,7 @@
             <a href="{{ route('admin.schedules.index') }}"
                 class="nav-link {{ request()->routeIs('admin.schedules.*') ? 'active' : '' }}">
                 <i class="bi bi-calendar-check"></i>
-                Jadwal Konseling
+                Jadwal Pemeriksaan
             </a>
         </li>
 

@@ -114,7 +114,7 @@
             <a href="{{ route('student.counseling.index') }}" 
                class="nav-link {{ request()->routeIs('student.counseling.*') ? 'active' : '' }}">
                <i class="bi bi-calendar-event-fill"></i> 
-               <span>Jadwal Konseling</span>
+               <span>Jadwal Pemeriksaan</span>
             </a>
         </li>
     </ul>

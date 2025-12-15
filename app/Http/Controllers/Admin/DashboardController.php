@@ -32,7 +32,7 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        // 3. Ambil 5 Jadwal Konseling Mendatang
+        // 3. Ambil 5 Jadwal Pemeriksaan Mendatang
         $upcomingSchedules = CounselingSchedule::with(['user', 'counselor'])
             ->where('status', 'scheduled')
             ->whereDate('date', '>=', now()) // Hanya jadwal hari ini ke depan

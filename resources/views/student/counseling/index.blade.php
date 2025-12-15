@@ -1,6 +1,6 @@
 @extends('layouts.student')
 
-@section('title', 'Jadwal Konseling')
+@section('title', 'Jadwal Pemeriksaan')
 
 @section('content')
     <div class="container-fluid">
@@ -11,13 +11,13 @@
                         <i class="bi bi-calendar-check-fill fs-2"></i>
                     </div>
                     <div>
-                        <h2 class="h4 fw-bold mb-1">Jadwal Konseling</h2>
-                        <p class="text-dark opacity-75 mb-0">Booking dan kelola sesi konseling Anda di sini.</p>
+                        <h2 class="h4 fw-bold mb-1">Jadwal Pemeriksaan</h2>
+                        <p class="text-dark opacity-75 mb-0">Booking dan kelola sesi Pemeriksaan Anda di sini.</p>
                     </div>
                 </div>
                 <button class="btn btn-warning text-white fw-bold shadow-sm" data-bs-toggle="modal"
                     data-bs-target="#bookCounselingModal">
-                    <i class="bi bi-plus-lg me-2"></i> Booking Konseling
+                    <i class="bi bi-plus-lg me-2"></i> Booking Pemeriksaan
                 </button>
             </div>
         </div>
@@ -91,7 +91,7 @@
 
                             <div class="mb-3">
                                 <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">Topik</small>
-                                <p class="mb-0 text-secondary">{{ Str::limit($schedule->topic ?? 'Konseling Umum', 50) }}</p>
+                                <p class="mb-0 text-secondary">{{ Str::limit($schedule->topic ?? 'Pemeriksaan Umum', 50) }}</p>
                             </div>
                             
                             <div class="mt-auto pt-3 border-top d-flex justify-content-between text-muted small">
@@ -105,13 +105,13 @@
             </div>
         @endif
 
-        <h3 class="h5 fw-bold text-dark mt-5 mb-3 border-bottom pb-2">Riwayat Konseling</h3>
+        <h3 class="h5 fw-bold text-dark mt-5 mb-3 border-bottom pb-2">Riwayat Pemeriksaan</h3>
         
         @if ($pastSchedules->isEmpty())
             <div class="card shadow-sm border-0 bg-light">
                 <div class="card-body text-center p-5 text-muted">
                     <i class="bi bi-clock-history fs-1 text-secondary opacity-50"></i>
-                    <p class="mt-2">Belum ada riwayat konseling.</p>
+                    <p class="mt-2">Belum ada riwayat Pemeriksaan.</p>
                 </div>
             </div>
         @else
