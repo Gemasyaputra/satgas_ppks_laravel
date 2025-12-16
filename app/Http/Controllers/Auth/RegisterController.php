@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -51,7 +52,17 @@ class RegisterController extends Controller
        return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Password::min(8)        // Minimal 8 karakter
+                    ->letters()         // Harus ada huruf
+                    ->mixedCase()       // Harus ada Huruf Besar & Kecil
+                    ->numbers()         // Harus ada Angka
+                    ->symbols()         // Harus ada Simbol (@$!%*?&)
+                    // ->uncompromised() // Opsional: Cek apakah password pernah bocor di internet (butuh koneksi internet)
+            ],
             'role' => ['required', 'string', 'in:student,lecturer,public'],
             // 'nim' => ['required', 'string', 'max:255', 'unique:users'], // Validasi NIM
             // 'phone' => ['required', 'string', 'max:20'],

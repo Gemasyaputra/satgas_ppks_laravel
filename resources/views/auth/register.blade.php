@@ -23,9 +23,6 @@
 
                 {{-- Logo Container dengan Efek Glow --}}
                 <div class="mb-12 relative">
-                    {{-- Glow Effect Background --}}
-                    {{-- <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl scale-150 animate-pulse"></div> --}}
-
                     {{-- Logo dengan Background Lingkaran Putih --}}
                     <div
                         class="relative rounded-full p-2 shadow-2xl transform hover:scale-105 hover:rotate-3 transition-all duration-500 inline-block">
@@ -134,28 +131,52 @@
                         @enderror
                     </div>
 
-                    <div>
-                        <label for="role" class="block text-sm font-bold text-gray-700 mb-2 ml-3">Daftar Sebagai</label>
-                        <div class="col-md-6">
-                            <select id="role" name="role" class="form-select @error('role') is-invalid @enderror"
+                    {{-- Input Role / Daftar Sebagai --}}
+                    <div class="space-y-2">
+                        <label for="role" class="block text-sm font-semibold text-gray-800 mb-2 ml-1">Daftar
+                            Sebagai</label>
+
+                        <div class="relative">
+                            {{-- Select Input --}}
+                            <select id="role" name="role"
+                                class="w-full px-5 py-3.5 bg-white border border-gray-300 rounded-xl 
+                   focus:ring-2 focus:ring-orange-500 focus:border-orange-500 focus:bg-white 
+                   hover:border-gray-400 transition-all duration-200 outline-none 
+                   text-gray-900 appearance-none cursor-pointer pr-12 shadow-sm
+                   @error('role') border-red-400 bg-red-50 focus:border-red-500 focus:ring-red-200 @enderror"
                                 required>
-                                <option value="" disabled selected>-- Pilih Status --</option>
-                                <option value="student">Mahasiswa</option>
+                                <option value="" disabled selected class="text-gray-400">Pilih peran Anda...</option>
+                                <option value="student" class="py-2">Mahasiswa</option>
                                 <option value="lecturer">Dosen / Tendik</option>
                                 <option value="public">Masyarakat Umum</option>
                             </select>
-                            @error('role')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                    </div>
 
+                            {{-- Ikon Panah Kustom --}}
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                                <i class="bi bi-chevron-down text-gray-500 text-base"></i>
+                            </div>
+                        </div>
+
+                        @error('role')
+                            <div class="flex items-start ml-1 mt-2">
+                                <i class="bi bi-exclamation-circle text-red-500 mr-2 mt-0.5 text-sm"></i>
+                                <p class="text-red-600 text-xs font-medium">{{ $message }}</p>
+                            </div>
+                        @enderror
+                    </div>
                     {{-- Input Password --}}
                     <div>
                         <label for="password" class="block text-sm font-bold text-gray-700 mb-2 ml-3">Password</label>
                         <input id="password" type="password"
                             class="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-full focus:ring-4 focus:ring-orange-100 focus:border-orange-500 transition-all outline-none text-gray-900 placeholder-gray-400 @error('password') border-red-500 bg-red-50 @enderror"
-                            name="password" required autocomplete="new-password" placeholder="Minimal 8 karakter">
+                            name="password" required autocomplete="new-password" placeholder="Buat password kuat">
+
+                        {{-- PETUNJUK PASSWORD --}}
+                        <p class="text-gray-500 text-xs mt-2 ml-3 flex items-start gap-1">
+                            <i class="bi bi-info-circle-fill text-orange-500 mt-0.5"></i>
+                            <span>Minimal 8 karakter, kombinasi huruf besar, huruf kecil, angka, dan simbol.</span>
+                        </p>
+
                         @error('password')
                             <p class="text-red-500 text-xs mt-2 ml-3 font-medium">{{ $message }}</p>
                         @enderror
@@ -167,7 +188,8 @@
                             Password</label>
                         <input id="password-confirm" type="password"
                             class="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-full focus:ring-4 focus:ring-orange-100 focus:border-orange-500 transition-all outline-none text-gray-900 placeholder-gray-400"
-                            name="password_confirmation" required autocomplete="new-password" placeholder="Ulangi password">
+                            name="password_confirmation" required autocomplete="new-password"
+                            placeholder="Ulangi password">
                     </div>
 
                     {{-- Tombol Register (Pill Shape) --}}
