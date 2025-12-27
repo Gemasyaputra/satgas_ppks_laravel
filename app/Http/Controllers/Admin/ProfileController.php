@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password; // <-- TAMBAHKAN INI
 
 class ProfileController extends Controller
 {
@@ -39,7 +40,16 @@ class ProfileController extends Controller
     {
         $request->validate([
             'current_password' => 'required',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'confirmed',
+                // ATURAN PASSWORD BARU DISINI:
+                Password::min(8)    // Minimal 8 karakter
+                    ->letters()     // Harus ada huruf
+                    ->numbers()     // Harus ada angka
+                    ->mixedCase()   // Harus ada huruf Besar & Kecil
+                    // ->symbols()  // (Opsional) Uncomment jika wajib pakai simbol (@$!%*#?&)
+            ],
         ]);
 
         $user = Auth::user();

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Mahasiswa')
+@section('title', 'Manajemen Pengguna')
 
 @section('content')
 <div class="container-fluid">
@@ -9,11 +9,11 @@
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4 d-flex justify-content-between align-items-center bg-gradient-to-r from-orange-50 to-white rounded-3">
             <div>
-                <h2 class="h4 fw-bold text-dark mb-1">Manajemen Mahasiswa</h2>
-                <p class="text-muted mb-0 small">Kelola data mahasiswa yang terdaftar dalam sistem Satgas PPKPT.</p>
+                <h2 class="h4 fw-bold text-dark mb-1">Manajemen Pengguna</h2>
+                <p class="text-muted mb-0 small">Kelola data Pengguna yang terdaftar dalam sistem Satgas PPKPT.</p>
             </div>
             <button class="btn btn-warning text-white fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#addStudentModal">
-                <i class="bi bi-plus-lg me-2"></i> Tambah Mahasiswa
+                <i class="bi bi-plus-lg me-2"></i> Tambah Pengguna
             </button>
         </div>
     </div>
@@ -41,14 +41,14 @@
         </div>
     @endif
 
-    {{-- Tabel Mahasiswa --}}
+    {{-- Tabel Pengguna --}}
     <div class="card border-0 shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
                     <thead class="bg-light text-secondary small text-uppercase">
                         <tr>
-                            <th scope="col" class="ps-4 py-3 border-0 rounded-start">Mahasiswa</th>
+                            <th scope="col" class="ps-4 py-3 border-0 rounded-start">Pengguna</th>
                             <th scope="col" class="py-3 border-0">NIM</th>
                             <th scope="col" class="py-3 border-0">Program Studi</th>
                             <th scope="col" class="py-3 border-0">Jurusan</th>
@@ -162,9 +162,9 @@
                                                 <div class="text-danger mb-3">
                                                     <i class="bi bi-trash3-fill" style="font-size: 3rem;"></i>
                                                 </div>
-                                                <h5 class="modal-title fw-bold mb-2">Hapus Mahasiswa?</h5>
+                                                <h5 class="modal-title fw-bold mb-2">Hapus Pengguna?</h5>
                                                 <p class="text-muted small mb-4">
-                                                    Data mahasiswa <strong>"{{ $student->name }}"</strong> beserta seluruh riwayatnya akan dihapus permanen.
+                                                    Data Pengguna <strong>"{{ $student->name }}"</strong> beserta seluruh riwayatnya akan dihapus permanen.
                                                 </p>
                                                 <div class="d-flex justify-content-center gap-2">
                                                     <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
@@ -182,8 +182,8 @@
                                     <div class="mb-3">
                                         <i class="bi bi-people text-secondary opacity-25" style="font-size: 3rem;"></i>
                                     </div>
-                                    <h6 class="fw-bold">Belum ada data mahasiswa.</h6>
-                                    <p class="small mb-0">Data akan muncul setelah ada mahasiswa yang mendaftar atau ditambahkan manual.</p>
+                                    <h6 class="fw-bold">Belum ada data Pengguna.</h6>
+                                    <p class="small mb-0">Data akan muncul setelah ada Pengguna yang mendaftar atau ditambahkan manual.</p>
                                 </td>
                             </tr>
                         @endforelse

@@ -101,7 +101,7 @@
             <a href="{{ route('admin.students.index') }}"
                 class="nav-link {{ request()->routeIs('admin.students.*') ? 'active' : '' }}">
                 <i class="bi bi-people"></i>
-                Mahasiswa/User
+                User
             </a>
         </li>
 
