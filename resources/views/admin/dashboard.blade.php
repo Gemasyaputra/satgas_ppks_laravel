@@ -54,7 +54,7 @@
                             <i class="bi bi-people-fill fs-4"></i>
                         </div>
                         <div>
-                            <h6 class="text-muted small text-uppercase fw-bold mb-0">Mahasiswa</h6>
+                            <h6 class="text-muted small text-uppercase fw-bold mb-0">Pengguna</h6>
                             <h2 class="fw-bold text-dark mb-0">{{ $stats['students_count'] }}</h2>
                         </div>
                     </div>
