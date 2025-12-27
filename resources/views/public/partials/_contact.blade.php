@@ -160,7 +160,7 @@
                     <p class="font-medium text-lg text-gray-800">Politeknik Negeri Padang</p>
                     <div class="flex items-start gap-3">
                         <i class="bi bi-building text-orange-500 mt-1"></i>
-                        <span>Gedung PKM (Pusat Kegiatan Mahasiswa), Lantai 2<br>Ruang Satgas PPKPT</span>
+                        <span>Ruang Satgas PPKPT</span>
                     </div>
                     <div class="flex items-start gap-3">
                         <i class="bi bi-pin-map-fill text-orange-500 mt-1"></i>

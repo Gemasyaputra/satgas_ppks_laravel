@@ -185,20 +185,44 @@
                     </div>
                 </div>
 
-                <div class="card shadow-sm border-0 text-white"
-                    style="background: linear-gradient(45deg, #fd7e14, #ff7207);">
+                {{-- LOGIKA PENGAMBILAN NOMOR HP --}}
+                @php
+                    // 1. Panggil Model Service
+                    use App\Models\Service;
+
+                    // 2. Cari layanan yang punya nomor HP.
+                    // Prioritas: Cari yang icon-nya 'telephone' (biasanya hotline), kalau tidak ada ambil yang pertama saja.
+                    $serviceKontak = Service::where('icon', 'telephone')->orWhereNotNull('phone')->first();
+
+                    // 3. Ambil nomornya, default ke dummy jika kosong
+                    $rawPhone = $serviceKontak ? $serviceKontak->phone : '6281234567890';
+
+                    // 4. Format nomor agar sesuai format WA (Ubah 08xx jadi 628xx)
+                    if (Str::startsWith($rawPhone, '0')) {
+                        $waNumber = '62' . substr($rawPhone, 1);
+                    } else {
+                        $waNumber = $rawPhone;
+                    }
+                @endphp
+
+                {{-- TAMPILAN KARTU --}}
+                <div class="card shadow-sm border-0 text-white mt-3 mx-2"
+                    style="background: linear-gradient(45deg, #fd7e14, #ff7207); border-radius: 1rem;">
                     <div class="card-body p-4 text-center">
                         <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 80px; height: 80px;">
-                            <i class="bi bi-telephone-fill fs-2 text-white"></i>
+                            style="width: 60px; height: 60px;">
+                            <i class="bi bi-telephone-fill fs-3 text-white"></i>
                         </div>
 
-                        <h5 class="fw-bold">Butuh Bantuan Segera?</h5>
-                        <p class="small opacity-75 mb-4">Jangan ragu menghubungi Satgas jika Anda dalam keadaan darurat.</p>
+                        <h6 class="fw-bold mb-1">Butuh Bantuan?</h6>
+                        <p class="small opacity-75 mb-3" style="font-size: 0.75rem;">
+                            Hubungi Satgas segera jika dalam keadaan darurat.
+                        </p>
 
-                        <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-light fw-bold w-100 shadow-sm"
-                            style="color: #fd7e14;">
-                            <i class="bi bi-whatsapp me-2"></i> Hubungi Satgas
+                        {{-- LINK WA DINAMIS --}}
+                        <a href="https://wa.me/{{ $waNumber }}" target="_blank"
+                            class="btn btn-light btn-sm fw-bold w-100 shadow-sm rounded-pill" style="color: #fd7e14;">
+                            <i class="bi bi-whatsapp me-1"></i> Hubungi Satgas
                         </a>
                     </div>
                 </div>
