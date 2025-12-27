@@ -36,7 +36,6 @@
                     {{-- Header Kartu (Icon & Title) --}}
                     <div class="d-flex align-items-center mb-3">
                         <div class="icon-box p-3 bg-warning-subtle text-warning rounded-4 me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            {{-- Logika Icon Font --}}
                             @php
                                 $iconClass = match($service->icon) {
                                     'email', 'mail', 'envelope' => 'envelope-fill',
@@ -68,27 +67,21 @@
                         </span>
                     </div>
 
-                    {{-- Action Buttons --}}
-                    <div class="mt-auto pt-3 border-top d-flex gap-2">
-                        <button class="btn btn-sm btn-light text-primary fw-bold flex-fill" data-bs-toggle="modal" data-bs-target="#editServiceModal{{ $service->id }}">
-                            <i class="bi bi-pencil-square me-1"></i> Edit
+                    {{-- Action Buttons (HANYA EDIT) --}}
+                    <div class="mt-auto pt-3 border-top">
+                        <button class="btn btn-sm btn-light text-primary fw-bold w-100" data-bs-toggle="modal" data-bs-target="#editServiceModal{{ $service->id }}">
+                            <i class="bi bi-pencil-square me-1"></i> Edit Layanan
                         </button>
-                        
-                        <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST" class="d-inline flex-fill" onsubmit="return confirm('Apakah Anda yakin ingin menghapus layanan ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-light text-danger fw-bold w-100">
-                                <i class="bi bi-trash3 me-1"></i> Hapus
-                            </button>
-                        </form>
                     </div>
 
                 </div>
             </div>
         </div>
         
-        {{-- Include Modal Edit di dalam loop (atau pindahkan keluar jika pakai JS dinamis) --}}
+        {{-- Include Modal Edit --}}
         @include('admin.services._edit_modal', ['service' => $service])
+
+        {{-- (Modal Hapus sudah dihapus dari sini) --}}
 
         @empty
         <div class="col-12">
@@ -114,7 +107,7 @@
     </div>
 </div>
 
-{{-- Modal Tambah (Hanya satu di luar loop) --}}
+{{-- Modal Tambah --}}
 @include('admin.services._add_modal')
 
 @endsection

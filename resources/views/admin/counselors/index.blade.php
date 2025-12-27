@@ -35,7 +35,6 @@
                         <tr>
                             <th scope="col" class="ps-4 py-3 border-0 rounded-start">Anggota Satgas</th>
                             <th scope="col" class="py-3 border-0">Peran</th>
-                            {{-- <th scope="col" class="py-3 border-0">Spesialisasi</th> --}}
                             <th scope="col" class="py-3 border-0">Kontak</th>
                             <th scope="col" class="py-3 border-0">Status</th>
                             <th scope="col" class="text-end pe-4 py-3 border-0 rounded-end">Aksi</th>
@@ -52,7 +51,6 @@
                                                  class="rounded-circle object-fit-cover border" 
                                                  style="width: 45px; height: 45px;">
                                         @else
-                                            {{-- Avatar Inisial --}}
                                             <div class="rounded-circle bg-orange-100 text-orange-600 d-flex align-items-center justify-content-center fw-bold border border-orange-200" 
                                                  style="width: 45px; height: 45px; font-size: 1.1rem;">
                                                 {{ substr($counselor->name, 0, 1) }}
@@ -66,24 +64,16 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {{-- PERBAIKAN DISINI: Ganti Purple jadi Primary (Oranye) atau Secondary (Abu) --}}
                                     @if($counselor->role == 'Mahasiswa Satgas')
                                         <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill px-3">
                                             <i class="bi bi-mortarboard-fill me-1"></i> Mahasiswa
                                         </span>
                                     @else
-                                        {{-- Menggunakan 'bg-primary-subtle' agar warnanya Oranye Muda (sesuai tema) --}}
                                         <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle rounded-pill px-3">
                                             <i class="bi bi-person-badge-fill me-1"></i> Dosen/Staff
                                         </span>
                                     @endif
                                 </td>
-                                {{-- <td>
-                                    <div class="d-flex align-items-center text-secondary">
-                                        <i class="bi bi-stars text-warning me-2"></i>
-                                        <span>{{ $counselor->specialization }}</span>
-                                    </div>
-                                </td> --}}
                                 <td>
                                     <div class="d-flex align-items-center text-secondary">
                                         <i class="bi bi-whatsapp text-success me-2"></i>
@@ -108,21 +98,44 @@
                                             <i class="bi bi-pencil-square fs-6"></i>
                                         </button>
 
-                                        <form action="{{ route('admin.counselors.destroy', $counselor->id) }}"
-                                            method="POST" class="d-inline"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota ini?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-light text-danger border-0" title="Hapus">
-                                                <i class="bi bi-trash3 fs-6"></i>
-                                            </button>
-                                        </form>
+                                        {{-- Tombol Hapus (Pemicu Modal) --}}
+                                        <button type="button" class="btn btn-sm btn-light text-danger border-0" 
+                                            data-bs-toggle="modal" data-bs-target="#deleteCounselorModal{{ $counselor->id }}" title="Hapus">
+                                            <i class="bi bi-trash3 fs-6"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
 
                             {{-- Include Modal Edit --}}
                             @include('admin.counselors._edit_modal', ['counselor' => $counselor])
+
+                            {{-- MODAL HAPUS --}}
+                            <div class="modal fade" id="deleteCounselorModal{{ $counselor->id }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <form action="{{ route('admin.counselors.destroy', $counselor->id) }}" method="POST">
+                                            @csrf @method('DELETE')
+                                            <div class="modal-header border-0 pb-0">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center pt-0">
+                                                <div class="text-danger mb-3">
+                                                    <i class="bi bi-trash3-fill" style="font-size: 3rem;"></i>
+                                                </div>
+                                                <h5 class="modal-title fw-bold mb-2">Hapus Anggota?</h5>
+                                                <p class="text-muted small mb-4">
+                                                    Anggota <strong>"{{ $counselor->name }}"</strong> akan dihapus permanen.
+                                                </p>
+                                                <div class="d-flex justify-content-center gap-2">
+                                                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-danger px-4">Ya, Hapus</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
                         @empty
                             <tr>

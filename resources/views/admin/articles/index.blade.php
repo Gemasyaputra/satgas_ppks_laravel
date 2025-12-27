@@ -93,21 +93,43 @@
                                         <i class="bi bi-pencil-square fs-6"></i>
                                     </button>
 
-                                    {{-- Tombol Hapus --}}
-                                    <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST"
-                                        class="d-inline"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus artikel ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-link btn-sm text-danger" title="Hapus Artikel">
-                                            <i class="bi bi-trash3-fill fs-6"></i>
-                                        </button>
-                                    </form>
+                                    {{-- Tombol Hapus (Pemicu Modal) --}}
+                                    <button type="button" class="btn btn-link btn-sm text-danger" 
+                                        data-bs-toggle="modal" data-bs-target="#deleteArticleModal{{ $article->id }}" title="Hapus Artikel">
+                                        <i class="bi bi-trash3-fill fs-6"></i>
+                                    </button>
                                 </td>
                             </tr>
 
-                            {{-- INCLUDE MODAL EDIT (Memanggil file _edit_modal.blade.php) --}}
+                            {{-- INCLUDE MODAL EDIT --}}
                             @include('admin.articles._edit_modal', ['article' => $article])
+
+                            {{-- MODAL HAPUS --}}
+                            <div class="modal fade" id="deleteArticleModal{{ $article->id }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
+                                            @csrf @method('DELETE')
+                                            <div class="modal-header border-0 pb-0">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center pt-0">
+                                                <div class="text-danger mb-3">
+                                                    <i class="bi bi-trash3-fill" style="font-size: 3rem;"></i>
+                                                </div>
+                                                <h5 class="modal-title fw-bold mb-2">Hapus Artikel?</h5>
+                                                <p class="text-muted small mb-4">
+                                                    Artikel <strong>"{{ Str::limit($article->title, 30) }}"</strong> akan dihapus permanen dari sistem.
+                                                </p>
+                                                <div class="d-flex justify-content-center gap-2">
+                                                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-danger px-4">Ya, Hapus</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
                         @empty
                             <tr>
@@ -132,7 +154,7 @@
     </div>
 </div>
 
-{{-- INCLUDE MODAL TAMBAH (Memanggil file _add_modal.blade.php) --}}
+{{-- INCLUDE MODAL TAMBAH --}}
 @include('admin.articles._add_modal')
 
 @endsection

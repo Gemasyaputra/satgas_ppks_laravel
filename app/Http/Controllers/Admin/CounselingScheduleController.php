@@ -47,8 +47,9 @@ class CounselingScheduleController extends Controller
     // Aksi kustom untuk update status
     public function updateStatus(Request $request, CounselingSchedule $schedule)
     {
+        // TAMBAHKAN 'scheduled' dan 'rejected' ke dalam validasi
         $validator = Validator::make($request->all(), [
-            'status' => 'required|in:completed,cancelled',
+            'status' => 'required|in:scheduled,rejected,completed,cancelled', 
         ]);
 
         if ($validator->fails()) {

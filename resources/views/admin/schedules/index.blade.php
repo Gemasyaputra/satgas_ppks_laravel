@@ -90,59 +90,183 @@
                                 </span>
                             </td>
                             <td class="text-end">
-                                {{-- Tombol Aksi Cepat (Selesai/Batal) --}}
-                                @if($schedule->status == 'scheduled')
-                                <form action="{{ route('admin.schedules.updateStatus', $schedule->id) }}" method="POST" class="d-inline">
-                                    @csrf @method('PATCH')
-                                    <input type="hidden" name="status" value="completed">
-                                    <button type="submit" class="btn btn-link btn-sm text-success" title="Tandai Selesai">
-                                        <i class="bi bi-check-circle-fill"></i>
+                                {{-- BUTTON GROUP RAPI --}}
+                                <div class="d-flex justify-content-end gap-1">
+                                    
+                                    {{-- LOGIKA 1: STATUS PENDING (Menunggu) --}}
+                                    @if($schedule->status == 'pending')
+                                        {{-- Tombol Terima (Memicu Modal) --}}
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#acceptModal{{ $schedule->id }}" title="Terima & Jadwalkan">
+                                            <i class="bi bi-check-lg"></i>
+                                        </button>
+
+                                        {{-- Tombol Tolak (Memicu Modal) --}}
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rejectModal{{ $schedule->id }}" title="Tolak">
+                                            <i class="bi bi-x-lg"></i>
+                                        </button>
+                                    @endif
+
+                                    {{-- LOGIKA 2: STATUS SCHEDULED (Terjadwal) --}}
+                                    @if($schedule->status == 'scheduled')
+                                        {{-- Tombol Selesai (Memicu Modal) --}}
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#completeModal{{ $schedule->id }}" title="Tandai Selesai">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </button>
+                                        
+                                        {{-- Tombol Batal (Langsung submit/confirm biasa) --}}
+                                        <form action="{{ route('admin.schedules.updateStatus', $schedule->id) }}" method="POST" onsubmit="return confirm('Yakin ingin membatalkan jadwal ini?');">
+                                            @csrf @method('PATCH')
+                                            <input type="hidden" name="status" value="cancelled">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm" title="Batalkan">
+                                                <i class="bi bi-slash-circle"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                    {{-- TOMBOL EDIT (Selalu Ada) --}}
+                                    <button class="btn btn-warning btn-sm text-white" data-bs-toggle="modal" data-bs-target="#editScheduleModal{{ $schedule->id }}" title="Edit">
+                                        <i class="bi bi-pencil-square"></i>
                                     </button>
-                                </form>
-                                <form action="{{ route('admin.schedules.updateStatus', $schedule->id) }}" method="POST" class="d-inline">
-                                    @csrf @method('PATCH')
-                                    <input type="hidden" name="status" value="cancelled">
-                                    <button type="submit" class="btn btn-link btn-sm text-danger" title="Batalkan">
-                                        <i class="bi bi-x-circle-fill"></i>
+                                    
+                                    {{-- TOMBOL HAPUS (SEKARANG MEMICU MODAL) --}}
+                                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $schedule->id }}" title="Hapus">
+                                        <i class="bi bi-trash"></i>
                                     </button>
-                                </form>
-                                @endif
-                                
-                                {{-- Tombol Edit (Memicu Modal di Bawah) --}}
-                                <button class="btn btn-link btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#editScheduleModal{{ $schedule->id }}" title="Edit">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                                
-                                {{-- Tombol Hapus --}}
-                                <form action="{{ route('admin.schedules.destroy', $schedule->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus jadwal ini?');">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-link btn-sm text-danger" title="Hapus">
-                                        <i class="bi bi-trash3-fill"></i>
-                                    </button>
-                                </form>
+                                </div>
                             </td>
                         </tr>
 
-                        {{-- MODAL EDIT (Disisipkan langsung agar tombol Edit berfungsi) --}}
+                        {{-- ================= MODAL SECTION ================= --}}
+
+                        {{-- 1. MODAL TERIMA --}}
+                        <div class="modal fade" id="acceptModal{{ $schedule->id }}" tabindex="-1">
+                            <div class="modal-dialog modal-sm modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="{{ route('admin.schedules.updateStatus', $schedule->id) }}" method="POST">
+                                        @csrf @method('PATCH')
+                                        <input type="hidden" name="status" value="scheduled">
+                                        
+                                        <div class="modal-header bg-success text-white py-2">
+                                            <h6 class="modal-title fw-bold">Konfirmasi Jadwal</h6>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p class="mb-2 small">Terima pengajuan dari:</p>
+                                            <h6 class="fw-bold mb-3">{{ $schedule->user->name }}</h6>
+                                            <div class="alert alert-light border mb-0 p-2">
+                                                <small class="text-muted d-block">Jadwal:</small>
+                                                <strong>{{ \Carbon\Carbon::parse($schedule->date)->format('d M Y') }}</strong><br>
+                                                <span class="badge bg-secondary mt-1">{{ $schedule->time }} WIB</span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer justify-content-center border-0 pt-0">
+                                            <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-sm btn-success px-4">Ya, Jadwalkan</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- 2. MODAL SELESAI --}}
+                        <div class="modal fade" id="completeModal{{ $schedule->id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="{{ route('admin.schedules.updateStatus', $schedule->id) }}" method="POST">
+                                        @csrf @method('PATCH')
+                                        <input type="hidden" name="status" value="completed">
+                                        
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">Selesaikan Sesi Konseling</h6>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="text-center mb-3">
+                                                <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <p class="text-center">Apakah sesi konseling ini telah selesai dilaksanakan?</p>
+                                            <div class="alert alert-success small">
+                                                <i class="bi bi-info-circle me-1"></i>
+                                                Status akan berubah menjadi <strong>Selesai</strong> dan tersimpan dalam riwayat.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-primary">Konfirmasi Selesai</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- 3. MODAL TOLAK --}}
+                        <div class="modal fade" id="rejectModal{{ $schedule->id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="{{ route('admin.schedules.updateStatus', $schedule->id) }}" method="POST">
+                                        @csrf @method('PATCH')
+                                        <input type="hidden" name="status" value="rejected">
+                                        
+                                        <div class="modal-header bg-danger text-white py-2">
+                                            <h6 class="modal-title fw-bold">Tolak Permintaan</h6>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Apakah Anda yakin ingin menolak permintaan jadwal dari <strong>{{ $schedule->user->name }}</strong>?</p>
+                                            <p class="small text-danger mb-0"><i class="bi bi-exclamation-triangle"></i> Tindakan ini tidak dapat dibatalkan.</p>
+                                        </div>
+                                        <div class="modal-footer border-0">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-danger">Tolak Permintaan</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- 4. MODAL HAPUS (BARU) --}}
+                        <div class="modal fade" id="deleteModal{{ $schedule->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="{{ route('admin.schedules.destroy', $schedule->id) }}" method="POST">
+                                        @csrf @method('DELETE')
+                                        <div class="modal-header border-0 pb-0">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center pt-0">
+                                            <div class="text-danger mb-3">
+                                                <i class="bi bi-trash3-fill" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="modal-title fw-bold mb-2">Hapus Jadwal?</h5>
+                                            <p class="text-muted small mb-4">
+                                                Data jadwal mahasiswa <strong>{{ $schedule->user->name }}</strong> akan dihapus permanen. Tindakan ini tidak bisa dibatalkan.
+                                            </p>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-danger px-4">Ya, Hapus</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- 5. MODAL EDIT (YANG SUDAH ADA) --}}
                         <div class="modal fade" id="editScheduleModal{{ $schedule->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <form action="{{ route('admin.schedules.update', $schedule->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
+                                        @csrf @method('PUT')
                                         <div class="modal-header">
                                             <h5 class="modal-title">Edit Jadwal</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-start">
-                                            {{-- Input Mahasiswa (Readonly agar tidak tertukar) --}}
                                             <div class="mb-3">
                                                 <label class="form-label text-muted small">Mahasiswa</label>
                                                 <input type="text" class="form-control bg-light" value="{{ $schedule->user->name }}" readonly>
                                                 <input type="hidden" name="user_id" value="{{ $schedule->user_id }}">
                                             </div>
-
-                                            {{-- Input Tanggal & Waktu --}}
                                             <div class="row mb-3">
                                                 <div class="col-6">
                                                     <label class="form-label">Tanggal</label>
@@ -153,7 +277,6 @@
                                                     <input type="time" class="form-control" name="time" value="{{ $schedule->time }}" required>
                                                 </div>
                                             </div>
-
                                             <div class="mb-3">
                                                 <label class="form-label">Durasi (Menit)</label>
                                                 <select class="form-select" name="duration">
@@ -162,7 +285,6 @@
                                                     <option value="90" {{ $schedule->duration == '90' ? 'selected' : '' }}>90 Menit</option>
                                                 </select>
                                             </div>
-
                                             <div class="mb-3">
                                                 <label class="form-label">Topik</label>
                                                 <input type="text" class="form-control" name="topic" value="{{ $schedule->topic }}">
@@ -180,7 +302,6 @@
 
                         @empty
                         <tr>
-                            {{-- Colspan diubah jadi 5 karena kolom Konselor dihapus --}}
                             <td colspan="5" class="text-center text-muted py-5">
                                 <i class="bi bi-calendar-x fs-1 opacity-25 d-block mb-2"></i>
                                 Belum ada jadwal Pemeriksaan.
@@ -197,7 +318,7 @@
     </div>
 </div>
 
-{{-- MODAL TAMBAH JADWAL (Pastikan code modal tambah Anda ada di file terpisah atau di bawah sini) --}}
+{{-- MODAL TAMBAH JADWAL --}}
 @include('admin.schedules._add_modal')
 
 @endsection
