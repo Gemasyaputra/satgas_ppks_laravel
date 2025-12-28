@@ -1,20 +1,22 @@
-<section id="layanan" class="bg-gradient-to-br from-gray-50 to-white py-20">
-    <div class="max-w-7xl mx-auto px-6">
+<section id="layanan" class="bg-gradient-to-br from-gray-50 to-white py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
 
         {{-- Header --}}
-        <div class="text-center mb-16">
+        <div class="text-center mb-10 md:mb-16">
             <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full mb-4">
                 <i class="bi bi-heart-fill text-sm"></i>
                 <span class="text-sm font-medium">Layanan Terpercaya</span>
             </div>
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">Layanan Satgas PPKPT</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            {{-- Font size responsif: 3xl di HP, 4xl di Desktop --}}
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-tight">Layanan Satgas PPKPT</h2>
+            <p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
                 Kami menyediakan layanan profesional untuk mendukung kesejahteraan dan melindungi hak-hak mahasiswa PNP.
             </p>
         </div>
 
         {{-- Service Cards --}}
-        <div class="grid md:grid-cols-3 gap-8 mb-16">
+        {{-- Grid responsif: 1 kolom (HP), 2 kolom (Tablet), 3 kolom (Desktop) --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
             @forelse($services as $service)
                 @php
                     // 1. LOGIKA WARNA (Background Icon & Tombol)
@@ -86,18 +88,16 @@
                     }
                 @endphp
 
-                <div
-                    class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col h-full border border-gray-100">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col h-full border border-gray-100">
 
                     {{-- BAGIAN ATAS: ICON BESAR --}}
-                    <div
-                        class="w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center {{ $theme['bg'] }} {{ $theme['text'] }} group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                        <i class="bi {{ $iconClass }} text-4xl"></i>
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center {{ $theme['bg'] }} {{ $theme['text'] }} group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <i class="bi {{ $iconClass }} text-3xl md:text-4xl"></i>
                     </div>
 
                     {{-- BAGIAN TENGAH: JUDUL & DESKRIPSI --}}
                     <div class="flex-grow">
-                        <h4 class="text-xl font-bold text-gray-800 mb-3">{{ $service->title }}</h4>
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3">{{ $service->title }}</h4>
                         <p class="text-gray-600 mb-6 leading-relaxed text-sm">
                             {{ $service->description }}
                         </p>
@@ -108,12 +108,12 @@
                         <a href="{{ $linkUrl }}" target="_blank"
                             class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r {{ $theme['btn'] }} text-white hover:opacity-90 transition-all shadow-md group-hover:shadow-lg w-full no-underline hover:no-underline">
                             <i class="bi {{ $linkIcon }}"></i>
-                            <span class="font-medium truncate">{{ $displayText }}</span>
+                            <span class="font-medium truncate text-sm md:text-base">{{ $displayText }}</span>
                         </a>
                     </div>
                 </div>
             @empty
-                <div class="col-span-3 py-12 text-center text-gray-400">
+                <div class="col-span-1 md:col-span-2 lg:col-span-3 py-12 text-center text-gray-400">
                     <i class="bi bi-inbox-fill text-4xl mb-2 block"></i>
                     <p>Layanan sedang dipersiapkan.</p>
                 </div>
@@ -121,16 +121,16 @@
         </div>
 
         {{-- Features --}}
-        {{-- Tambahkan class 'text-white' di div pembungkus utama ini --}}
-        <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-8 md:p-12 text-white shadow-xl">
+        {{-- Padding disesuaikan: p-6 di HP, p-12 di Desktop --}}
+        <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-6 md:p-12 text-white shadow-xl">
 
-            <div class="text-center mb-10">
-                {{-- Hapus class warna text-gray-..., biarkan dia mewarisi text-white --}}
+            <div class="text-center mb-8 md:mb-10">
                 <h3 class="text-2xl md:text-3xl font-bold mb-2 text-white">Mengapa Memilih Layanan Kami?</h3>
-                <p class="text-orange-100 text-lg">Komitmen kami untuk memberikan layanan terbaik</p>
+                <p class="text-orange-100 text-base md:text-lg">Komitmen kami untuk memberikan layanan terbaik</p>
             </div>
 
-            <div class="grid md:grid-cols-4 gap-8">
+            {{-- Grid Feature: 1 kolom (HP kecil), 2 kolom (HP besar/Tablet), 4 kolom (Desktop) --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-8">
                 @php
                     $features = [
                         [
@@ -157,7 +157,6 @@
                             class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 transition-transform group-hover:rotate-6">
                             <i class="{{ $feature['icon'] }} text-3xl text-white"></i>
                         </div>
-                        {{-- Pastikan di sini TIDAK ADA class text-gray-800. Tambahkan text-white biar aman --}}
                         <h4 class="text-lg font-bold mb-2 text-white">{{ $feature['title'] }}</h4>
                         <p class="text-orange-100 text-sm leading-relaxed px-2">{{ $feature['desc'] }}</p>
                     </div>

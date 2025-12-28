@@ -5,9 +5,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow-sm border-0 mb-4 bg-warning-subtle text-warning-emphasis">
-            <div class="card-body p-4 d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <div class="bg-white bg-opacity-50 rounded-circle p-3 me-3 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px;">
+            <div class="card-body p-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
+                
+                <div class="d-flex flex-column flex-md-row align-items-center text-center text-md-start mb-3 mb-md-0">
+                    <div class="bg-white bg-opacity-50 rounded-circle p-3 me-md-3 mb-3 mb-md-0 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px;">
                         <i class="bi bi-calendar-check-fill fs-2"></i>
                     </div>
                     <div>
@@ -15,7 +16,8 @@
                         <p class="text-dark opacity-75 mb-0">Booking dan kelola sesi Pemeriksaan Anda di sini.</p>
                     </div>
                 </div>
-                <button class="btn btn-warning text-white fw-bold shadow-sm" data-bs-toggle="modal"
+
+                <button class="btn btn-warning text-white fw-bold shadow-sm w-100 w-md-auto" data-bs-toggle="modal"
                     data-bs-target="#bookCounselingModal">
                     <i class="bi bi-plus-lg me-2"></i> Booking Pemeriksaan
                 </button>
@@ -58,13 +60,13 @@
         @else
             <div class="row g-3">
             @foreach ($upcomingSchedules as $schedule)
-                <div class="col-md-6 col-xl-4">
+                <div class="col-12 col-md-6 col-xl-4">
                     <div class="card shadow-sm border-0 h-100">
                         <div class="card-body p-4 d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 @if($schedule->status == 'pending')
                                     <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-3 py-2 rounded-pill">
-                                        <i class="bi bi-hourglass-split me-1"></i> Menunggu Konfirmasi
+                                        <i class="bi bi-hourglass-split me-1"></i> Menunggu
                                     </span>
                                 @else
                                     <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle px-3 py-2 rounded-pill">
@@ -77,7 +79,7 @@
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="btn btn-link text-danger p-0 text-decoration-none" title="Batalkan Jadwal">
-                                        <i class="bi bi-trash"></i>
+                                        <i class="bi bi-trash fs-5"></i>
                                     </button>
                                 </form>
                             </div>
@@ -117,7 +119,7 @@
         @else
             <div class="card shadow-sm border-0 overflow-hidden">
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
+                    <table class="table table-hover align-middle mb-0 text-nowrap">
                         <thead class="bg-light text-secondary small text-uppercase">
                             <tr>
                                 <th class="ps-4 py-3">Tanggal</th>
